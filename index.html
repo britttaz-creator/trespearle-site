@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Très Perlé | Pearls for Very Good Dogs</title>
+<meta name="description" content="Chic, playful pearl necklaces thoughtfully made for pups with impeccable taste.">
+<style>
+  :root{
+    --ink:#211a18;
+    --cream:#f8f5ef;
+    --cream-2:#efe8de;
+    --black-bar:#12100f;
+    --eyebrow:#9f6255;
+    --rose-1:#e7b6a4;
+    --rose-2:#c17c63;
+    --line:#d9cfc3;
+    --white:#fffdf9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;
+    margin:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  .eyebrow{
+    color:var(--eyebrow);
+    letter-spacing:.26em;
+    font-size:.72rem;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  /* announcement bar */
+  .announce{background:var(--black-bar);color:var(--white);text-align:center;
+    padding:10px 12px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;}
+
+  /* header */
+  header{
+    background:var(--cream);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;position:sticky;top:0;z-index:40;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-size:1.4rem;letter-spacing:.08em;}
+  .brand img{height:40px;width:auto;}
+  nav{display:flex;gap:36px;}
+  nav a{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;}
+  .header-icons{display:flex;align-items:center;gap:20px;}
+  .icon-btn{background:none;border:none;font-size:1.2rem;position:relative;color:var(--ink);}
+  #cart-count{
+    position:absolute;top:-6px;right:-10px;background:var(--rose-2);color:#fff;
+    font-size:.6rem;border-radius:50%;width:16px;height:16px;display:flex;
+    align-items:center;justify-content:center;font-family:Arial;
+  }
+  .menu-toggle{display:none;background:none;border:none;font-size:1.4rem;}
+
+  /* hero */
+  .hero{
+    position:relative;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;min-height:640px;
+  }
+  .hero-copy{
+    background:linear-gradient(155deg,var(--rose-1),var(--rose-2));
+    color:var(--white);padding:70px 60px;display:flex;flex-direction:column;justify-content:center;gap:20px;
+  }
+  .hero-copy .eyebrow{color:#fff;opacity:.9;}
+  .hero-copy h1{font-size:4.2rem;line-height:1.05;letter-spacing:-.02em;}
+  .hero-copy p{font-size:1.05rem;max-width:36ch;line-height:1.6;opacity:.95;}
+  .btn{
+    display:inline-block;background:var(--white);color:var(--ink);
+    padding:16px 30px;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;
+    border:none;align-self:flex-start;
+  }
+  .btn:hover{background:var(--ink);color:var(--white);}
+  .btn-dark{background:var(--ink);color:var(--white);}
+  .btn-dark:hover{background:var(--rose-2);}
+  .btn-outline{background:transparent;border:1px solid var(--ink);color:var(--ink);}
+  .hero-photo{background:#caa48f center/cover no-repeat;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+
+  /* floating mascots */
+  .floating-mascots{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;}
+  .mascot-track{position:absolute;left:-140px;width:108px;height:68px;}
+  .mascot-track img{width:108px;height:68px;object-fit:contain;opacity:.8;}
+  @keyframes doxie-cross{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(calc(280px + 100vw));}
+  }
+  @keyframes doxie-bob{
+    0%,100%{transform:translateY(0) rotate(-2deg);}
+    50%{transform:translateY(-14px) rotate(2deg);}
+  }
+  /* animation-name/duration/delay/timing are all set per-instance via JS for randomness */
+
+  section{padding:96px 48px;}
+  .center{text-align:center;max-width:640px;margin:0 auto;}
+  .section-head{text-align:center;margin-bottom:56px;}
+  .section-head h2{font-size:2.4rem;margin-top:10px;}
+
+  /* signatures / shop */
+  .signatures{background:var(--cream);}
+  .swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1100px;margin:0 auto 64px;}
+  .swatch-card{background:var(--white);border:1px solid var(--line);cursor:pointer;transition:box-shadow .2s,border-color .2s;}
+  .swatch-card.selected{border-color:var(--rose-2);box-shadow:0 8px 24px rgba(193,124,99,.25);}
+  .swatch-card img{width:100%;aspect-ratio:1/1;object-fit:cover;}
+  .swatch-info{padding:20px 22px;}
+  .swatch-info h3{font-size:1.3rem;margin-bottom:4px;}
+  .swatch-info p{margin:0;font-size:.85rem;color:#6c5c56;}
+  .swatch-info .price{margin-top:8px;font-size:.85rem;font-weight:bold;}
+
+  /* configurator */
+  .configurator{
+    max-width:760px;margin:0 auto;background:var(--white);border:1px solid var(--line);
+    padding:44px 48px;
+  }
+  .configurator h3{font-size:1.6rem;margin-bottom:6px;}
+  .configurator .selected-name{color:var(--rose-2);margin-bottom:28px;font-size:.95rem;}
+  .field-group{margin-bottom:30px;}
+  .field-label{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#6c5c56;margin-bottom:12px;display:block;}
+  .size-pills{display:flex;gap:10px;flex-wrap:wrap;}
+  .pill{border:1px solid var(--line);background:var(--white);padding:10px 18px;font-size:.85rem;}
+  .pill.selected{background:var(--ink);color:var(--white);border-color:var(--ink);}
+  .charm-toggle{display:flex;align-items:center;gap:12px;font-size:.92rem;}
+  .charm-toggle input{width:18px;height:18px;}
+  #charm-note-wrap{margin-top:14px;display:none;}
+  #charm-note-wrap.show{display:block;}
+  textarea, input[type=text]{
+    width:100%;border:1px solid var(--line);padding:12px 14px;font-family:inherit;font-size:.9rem;
+    background:var(--cream);
+  }
+  .qty-row{display:flex;align-items:center;gap:16px;}
+  .qty-btn{width:34px;height:34px;border:1px solid var(--line);background:var(--white);font-size:1rem;}
+  .price-row{display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--line);padding-top:24px;margin-top:8px;}
+  .price-row .total{font-size:1.6rem;font-family:Georgia,serif;}
+  .add-to-cart{padding:16px 36px;}
+
+  /* feature / sizing */
+  .feature{background:var(--cream-2);display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .size-card{background:var(--white);border:1px solid var(--line);padding:40px;}
+  .size-row{display:flex;align-items:flex-end;gap:22px;margin:30px 0 18px;}
+  .doxie-step{background:var(--rose-2);border-radius:60% 60% 50% 50%;opacity:.85;}
+  .size-labels{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px;font-size:.85rem;letter-spacing:.08em;color:#6c5c56;}
+  .feature h2{font-size:2.2rem;margin-bottom:18px;}
+  .feature p{line-height:1.7;color:#4a3d38;}
+
+  /* for the love of dogs */
+  .love{text-align:center;background:var(--cream);}
+  .love h2{font-size:2.4rem;max-width:760px;margin:14px auto;line-height:1.25;}
+  .love p{max-width:560px;margin:0 auto;color:#4a3d38;line-height:1.7;}
+
+  footer{background:var(--black-bar);color:#e9e0d8;padding:56px 48px 30px;font-size:.85rem;}
+  footer .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;max-width:1100px;margin:0 auto;}
+  footer h4{font-family:Georgia,serif;font-size:1.2rem;margin-bottom:14px;color:#fff;}
+  footer .disclaimer{text-align:center;opacity:.6;margin-top:40px;letter-spacing:.08em;font-size:.72rem;text-transform:uppercase;}
+
+  /* cart drawer */
+  .overlay{position:fixed;inset:0;background:rgba(20,15,13,.4);z-index:60;display:none;}
+  .overlay.show{display:block;}
+  .drawer{
+    position:fixed;top:0;right:-420px;width:400px;max-width:92vw;height:100%;
+    background:var(--white);z-index:70;transition:right .3s ease;display:flex;flex-direction:column;
+  }
+  .drawer.open{right:0;}
+  .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:26px 26px 18px;border-bottom:1px solid var(--line);}
+  .drawer-head h3{font-size:1.3rem;}
+  .drawer-close{background:none;border:none;font-size:1.4rem;}
+  .cart-items{flex:1;overflow-y:auto;padding:20px 26px;}
+  .cart-item{display:flex;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .cart-item .name{font-size:.92rem;font-weight:bold;}
+  .cart-item .meta{font-size:.78rem;color:#6c5c56;margin-top:4px;line-height:1.5;}
+  .cart-item .remove{background:none;border:none;color:var(--rose-2);font-size:.78rem;text-decoration:underline;margin-top:6px;}
+  .drawer-foot{padding:22px 26px 30px;border-top:1px solid var(--line);}
+  .drawer-foot .subtotal{display:flex;justify-content:space-between;font-size:1.05rem;margin-bottom:16px;}
+  .pay-btn{width:100%;padding:16px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:#003087;color:#fff;border:none;margin-bottom:10px;}
+  .pay-note{font-size:.72rem;color:#6c5c56;text-align:center;line-height:1.5;}
+  .empty-cart{color:#6c5c56;font-size:.9rem;padding:40px 0;text-align:center;}
+
+  @media(max-width:860px){
+    header{padding:14px 20px;}
+    nav{position:fixed;top:76px;left:0;right:0;background:var(--cream);flex-direction:column;
+      gap:0;padding:10px 20px;border-bottom:1px solid var(--line);display:none;}
+    nav.open{display:flex;}
+    nav a{padding:14px 0;border-bottom:1px solid var(--line);}
+    .menu-toggle{display:block;}
+    .hero{grid-template-columns:1fr;}
+    .hero-copy{padding:50px 26px;}
+    .hero-copy h1{font-size:2.6rem;}
+    .hero-photo{min-height:320px;}
+    section{padding:64px 22px;}
+    .swatches{grid-template-columns:1fr;}
+    .feature{grid-template-columns:1fr;}
+    .configurator{padding:30px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="floating-mascots" id="floating-mascots"></div>
+
+<div class="announce">Complimentary shipping on orders $75+</div>
+
+<header>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</button>
+  <div class="brand"><img src="assets/tres-perle-logo.png" alt="Très Perlé"></div>
+  <nav id="main-nav">
+    <a href="#shop">Shop</a>
+    <a href="#story">The Story</a>
+    <a href="#sizing">Sizing</a>
+    <a href="#journal">Journal</a>
+  </nav>
+  <div class="header-icons">
+    <button class="icon-btn" aria-label="Search">&#128269;</button>
+    <button class="icon-btn" aria-label="Wishlist">&#9825;</button>
+    <button class="icon-btn" id="cart-btn" aria-label="Cart">&#128092;<span id="cart-count">0</span></button>
+  </div>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-copy">
+    <span class="eyebrow">Pearls for very good dogs</span>
+    <h1>A little luxury for your best friend.</h1>
+    <p>Chic, playful pearl necklaces thoughtfully made for pups with impeccable taste.</p>
+    <a class="btn" href="#shop">Explore the Collection</a>
+  </div>
+  <div class="hero-photo"><img src="assets/tres-perle-hero.jpg" alt="Two dachshunds wearing Très Perlé pearl necklaces"></div>
+</section>
+
+<section class="signatures" id="shop">
+  <div class="section-head">
+    <span class="eyebrow">The Signatures</span>
+    <h2>Made to slip on. Made to stand out.</h2>
+  </div>
+
+  <div class="swatches" id="swatches">
+    <div class="swatch-card" data-color="classic">
+      <img src="assets/product-classic.jpg" alt="Classicé - ivory faux pearl necklace">
+      <div class="swatch-info">
+        <h3>Classicé</h3>
+        <p>Ivory faux pearls</p>
+        <div class="price">From $22</div>
+      </div>
+    </div>
+    <div class="swatch-card" data-color="rose">
+      <img src="assets/product-rose.jpg" alt="Rosé - blush faux pearl necklace">
+      <div class="swatch-info">
+        <h3>Rosé</h3>
+        <p>Blush faux pearls</p>
+        <div class="price">From $22</div>
+      </div>
+    </div>
+    <div class="swatch-card" data-color="noir">
+      <img src="assets/product-noir.jpg" alt="Noiré - ivory and midnight faux pearl necklace">
+      <div class="swatch-info">
+        <h3>Noiré</h3>
+        <p>Ivory + midnight faux pearls</p>
+        <div class="price">From $22</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="configurator">
+    <h3>Build Their Necklace</h3>
+    <div class="selected-name" id="selected-name">Classicé — Ivory faux pearls</div>
+
+    <div class="field-group">
+      <span class="field-label">Size</span>
+      <div class="size-pills" id="size-pills">
+        <button class="pill" data-size="XS" data-delta="0">XS</button>
+        <button class="pill" data-size="S" data-delta="0">S</button>
+        <button class="pill" data-size="M" data-delta="2">M</button>
+        <button class="pill" data-size="L" data-delta="4">L</button>
+        <button class="pill" data-size="XL" data-delta="6">XL</button>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <span class="field-label">Charm or Accent Pearl</span>
+      <label class="charm-toggle">
+        <input type="checkbox" id="charm-toggle">
+        <span>Add a charm or accent pearl (+$8)</span>
+      </label>
+      <div id="charm-note-wrap">
+        <textarea id="charm-note" rows="2" placeholder="Tell us what you'd like — a strawberry, a gem, a key, an initial, a birthstone, etc. We'll confirm the exact style with you after checkout."></textarea>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <span class="field-label">Quantity</span>
+      <div class="qty-row">
+        <button class="qty-btn" id="qty-minus">−</button>
+        <span id="qty-val">1</span>
+        <button class="qty-btn" id="qty-plus">+</button>
+      </div>
+    </div>
+
+    <div class="price-row">
+      <span class="field-label" style="margin:0;">Price</span>
+      <span class="total" id="unit-total">$22.00</span>
+    </div>
+
+    <button class="btn btn-dark add-to-cart" id="add-to-cart" style="margin-top:26px;width:100%;">Add to Cart</button>
+  </div>
+</section>
+
+<section class="feature" id="sizing">
+  <div>
+    <span class="eyebrow">Easy, comfortable, beautiful</span>
+    <h2>No clasps.<br>No fuss.</h2>
+    <p>Each necklace is hand-strung on flexible elastic, so it slips gently over your dog's head — no tiny hardware to wrestle with.</p>
+  </div>
+  <div class="size-card">
+    <span class="eyebrow">Choose their fit</span>
+    <h3 style="font-size:1.6rem;margin:10px 0 0;">A little body. A perfect fit.</h3>
+    <div class="size-row">
+      <div class="doxie-step" style="width:24px;height:16px;"></div>
+      <div class="doxie-step" style="width:34px;height:20px;"></div>
+      <div class="doxie-step" style="width:46px;height:26px;"></div>
+      <div class="doxie-step" style="width:60px;height:32px;"></div>
+      <div class="doxie-step" style="width:76px;height:40px;"></div>
+    </div>
+    <div class="size-labels"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+    <p style="margin-top:18px;font-size:.85rem;color:#6c5c56;">Measure around the widest part of their chest for their best fit.</p>
+    <img src="assets/dachshund-size-guide.png" alt="Dachshund size guide" style="margin-top:20px;">
+  </div>
+</section>
+
+<section class="love" id="story">
+  <span class="eyebrow">For the love of dogs</span>
+  <h2>Because your best friend deserves a little indulgence.</h2>
+  <p>Très Perlé creates joyful, elevated adornments for the dogs who make everyday life more beautiful. Every piece is designed with the same care you'd give a fine piece of your own jewelry — because they deserve nothing less.</p>
+</section>
+
+<footer id="journal">
+  <div class="foot-grid">
+    <div>
+      <h4>Très Perlé</h4>
+      <p style="max-width:32ch;opacity:.75;">Pearls for very good dogs. Chic, playful necklaces made for pups with impeccable taste.</p>
+    </div>
+    <div>
+      <h4>Say Hello</h4>
+      <p style="opacity:.75;">Questions about sizing, charms, or your order?<br>We're happy to help.</p>
+    </div>
+  </div>
+  <div class="disclaimer">Decorative accessory · Not for leash attachment</div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="drawer-close" id="drawer-close">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <button class="pay-btn" id="checkout-btn">Checkout with PayPal / Venmo</button>
+    <div class="pay-note">Secure checkout via PayPal. Venmo appears automatically as a payment option for eligible U.S. buyers.</div>
+  </div>
+</div>
+
+<!-- Hidden PayPal cart form, built dynamically at checkout -->
+<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:none;"></form>
+
+<script>
+(function(){
+  /* ---------- floating dachshunds: slower, eased, randomized ---------- */
+  var track = document.getElementById('floating-mascots');
+  var tops = [110, 175, 240];
+  var count = 3;
+  for (var i = 0; i < count; i++) {
+    var wrap = document.createElement('div');
+    wrap.className = 'mascot-track';
+    var crossDur = (26 + Math.random() * 22).toFixed(1);      // 26s - 48s, varied per dog
+    var crossDelay = (Math.random() * 24).toFixed(1);          // 0 - 24s, staggered randomly
+    var bobDur = (3.2 + Math.random() * 2.6).toFixed(1);        // 3.2s - 5.8s
+    var bobDelay = (Math.random() * 3).toFixed(1);
+    var top = tops[i] + (Math.random() * 20 - 10);
+    wrap.style.top = top + 'px';
+    wrap.style.animationName = 'doxie-cross';
+    wrap.style.animationDuration = crossDur + 's';
+    wrap.style.animationDelay = crossDelay + 's';
+    wrap.style.animationTimingFunction = 'ease-in-out';
+    wrap.style.animationIterationCount = 'infinite';
+    var img = document.createElement('img');
+    img.src = 'assets/floating-dachshund-outline.png';
+    img.alt = '';
+    img.style.animationName = 'doxie-bob';
+    img.style.animationDuration = bobDur + 's';
+    img.style.animationDelay = bobDelay + 's';
+    img.style.animationTimingFunction = 'ease-in-out';
+    img.style.animationIterationCount = 'infinite';
+    wrap.appendChild(img);
+    track.appendChild(wrap);
+  }
+
+  /* ---------- mobile nav ---------- */
+  document.getElementById('menu-toggle').addEventListener('click', function(){
+    document.getElementById('main-nav').classList.toggle('open');
+  });
+
+  /* ---------- configurator state ---------- */
+  var PRODUCTS = {
+    classic: {name:'Classicé', desc:'Ivory faux pearls'},
+    rose:    {name:'Rosé', desc:'Blush faux pearls'},
+    noir:    {name:'Noiré', desc:'Ivory + midnight faux pearls'}
+  };
+  var BASE_PRICE = 22;
+  var CHARM_PRICE = 8;
+
+  var state = {color:'classic', size:'XS', delta:0, charm:false, note:'', qty:1};
+
+  var swatchEls = document.querySelectorAll('.swatch-card');
+  var pillEls = document.querySelectorAll('.pill');
+  var charmToggle = document.getElementById('charm-toggle');
+  var charmNoteWrap = document.getElementById('charm-note-wrap');
+  var charmNote = document.getElementById('charm-note');
+  var qtyVal = document.getElementById('qty-val');
+
+  function selectColor(color){
+    state.color = color;
+    swatchEls.forEach(function(el){ el.classList.toggle('selected', el.dataset.color === color); });
+    document.getElementById('selected-name').textContent = PRODUCTS[color].name + ' — ' + PRODUCTS[color].desc;
+    updatePrice();
+  }
+  function selectSize(size, delta){
+    state.size = size; state.delta = delta;
+    pillEls.forEach(function(el){ el.classList.toggle('selected', el.dataset.size === size); });
+    updatePrice();
+  }
+  function unitPrice(){
+    return BASE_PRICE + state.delta + (state.charm ? CHARM_PRICE : 0);
+  }
+  function updatePrice(){
+    document.getElementById('unit-total').textContent = '$' + unitPrice().toFixed(2);
+  }
+
+  swatchEls.forEach(function(el){ el.addEventListener('click', function(){ selectColor(el.dataset.color); }); });
+  pillEls.forEach(function(el){ el.addEventListener('click', function(){ selectSize(el.dataset.size, parseFloat(el.dataset.delta)); }); });
+  pillEls[0].click();
+  selectColor('classic');
+
+  charmToggle.addEventListener('change', function(){
+    state.charm = charmToggle.checked;
+    charmNoteWrap.classList.toggle('show', state.charm);
+    updatePrice();
+  });
+  charmNote.addEventListener('input', function(){ state.note = charmNote.value; });
+
+  document.getElementById('qty-minus').addEventListener('click', function(){
+    state.qty = Math.max(1, state.qty - 1); qtyVal.textContent = state.qty;
+  });
+  document.getElementById('qty-plus').addEventListener('click', function(){
+    state.qty = state.qty + 1; qtyVal.textContent = state.qty;
+  });
+
+  /* ---------- cart ---------- */
+  var CART_KEY = 'tp_cart';
+  function loadCart(){ try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e){ return []; } }
+  function saveCart(cart){ try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e){} }
+
+  function addToCart(){
+    var cart = loadCart();
+    cart.push({
+      color: PRODUCTS[state.color].name,
+      size: state.size,
+      charm: state.charm,
+      note: state.note,
+      qty: state.qty,
+      unitPrice: unitPrice()
+    });
+    saveCart(cart);
+    renderCart();
+    openDrawer();
+  }
+  document.getElementById('add-to-cart').addEventListener('click', addToCart);
+
+  function renderCart(){
+    var cart = loadCart();
+    var wrap = document.getElementById('cart-items');
+    wrap.innerHTML = '';
+    var subtotal = 0;
+    var count = 0;
+    if (cart.length === 0) {
+      wrap.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+    }
+    cart.forEach(function(item, idx){
+      subtotal += item.unitPrice * item.qty;
+      count += item.qty;
+      var row = document.createElement('div');
+      row.className = 'cart-item';
+      var metaBits = [item.size + ' size'];
+      if (item.charm) metaBits.push('+ charm/accent pearl' + (item.note ? ' (' + item.note + ')' : ''));
+      metaBits.push('Qty ' + item.qty);
+      row.innerHTML =
+        '<div><div class="name">' + item.color + ' Necklace</div>' +
+        '<div class="meta">' + metaBits.join(' · ') + '</div>' +
+        '<button class="remove" data-idx="' + idx + '">Remove</button></div>' +
+        '<div>$' + (item.unitPrice * item.qty).toFixed(2) + '</div>';
+      wrap.appendChild(row);
+    });
+    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('cart-count').textContent = count;
+    wrap.querySelectorAll('.remove').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var cart = loadCart();
+        cart.splice(parseInt(btn.dataset.idx, 10), 1);
+        saveCart(cart);
+        renderCart();
+      });
+    });
+  }
+
+  function openDrawer(){
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+  }
+  function closeDrawer(){
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+  document.getElementById('cart-btn').addEventListener('click', function(){ renderCart(); openDrawer(); });
+  document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+  document.getElementById('overlay').addEventListener('click', closeDrawer);
+
+  /* ---------- checkout: PayPal cart (Venmo shows automatically for eligible US buyers) ---------- */
+  document.getElementById('checkout-btn').addEventListener('click', function(){
+    var cart = loadCart();
+    if (cart.length === 0) return;
+    var form = document.getElementById('paypal-form');
+    form.innerHTML = '';
+    function addField(name, value){
+      var input = document.createElement('input');
+      input.type = 'hidden'; input.name = name; input.value = value;
+      form.appendChild(input);
+    }
+    addField('cmd', '_cart');
+    addField('upload', '1');
+    addField('business', 'brettekey@hotmail.com');
+    addField('currency_code', 'USD');
+    addField('no_shipping', '0');
+    addField('return', window.location.origin + '/#thank-you');
+    addField('cancel_return', window.location.origin + '/#shop');
+    cart.forEach(function(item, i){
+      var n = i + 1;
+      var itemName = 'Très Perlé ' + item.color + ' Necklace (' + item.size + ')' +
+        (item.charm ? ' + Charm/Accent Pearl' : '') +
+        (item.note ? (' [Note: ' + item.note + ']') : '');
+      addField('item_name_' + n, itemName);
+      addField('amount_' + n, item.unitPrice.toFixed(2));
+      addField('quantity_' + n, item.qty);
+    });
+    form.submit();
+  });
+
+  renderCart();
+})();
+</script>
+</body>
+</html>
