@@ -640,6 +640,8 @@
   <div class="drawer-foot">
     <div class="pay-note" id="free-shipping-msg" style="margin-bottom:14px;"></div>
     <div class="subtotal"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <div class="subtotal"><span>Shipping</span><span id="shipping-cost">$0.00</span></div>
+    <div class="subtotal" id="total-row" style="font-weight:bold;border-top:1px solid var(--line);padding-top:12px;margin-top:2px;"><span>Total</span><span id="order-total">$0.00</span></div>
     <button class="pay-btn" id="checkout-btn">Checkout with PayPal / Venmo</button>
     <div class="pay-note">Secure checkout via PayPal. Venmo appears automatically as a payment option for eligible U.S. buyers. All sales are final.</div>
   </div>
@@ -805,6 +807,16 @@
     document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
     document.getElementById('cart-count').textContent = count;
     var freeShipThreshold = 75;
+    var flatShippingRate = 6.95;
+    var shippingCost = (cart.length === 0) ? 0 : (subtotal >= freeShipThreshold ? 0 : flatShippingRate);
+    var shipCostEl = document.getElementById('shipping-cost');
+    if (shipCostEl) {
+      shipCostEl.textContent = (cart.length > 0 && shippingCost === 0) ? 'FREE' : '$' + shippingCost.toFixed(2);
+    }
+    var totalEl = document.getElementById('order-total');
+    if (totalEl) {
+      totalEl.textContent = '$' + (subtotal + shippingCost).toFixed(2);
+    }
     var shipMsgEl = document.getElementById('free-shipping-msg');
     if (shipMsgEl) {
       if (cart.length === 0) {
@@ -855,8 +867,11 @@
     addField('no_shipping', '0');
     addField('return', window.location.origin + '/#thank-you');
     addField('cancel_return', window.location.origin + '/#shop');
-    cart.forEach(function(item, i){
-      var n = i + 1;
+    var subtotal = 0;
+    cart.forEach(function(item){ subtotal += item.unitPrice * item.qty; });
+    var n = 0;
+    cart.forEach(function(item){
+      n++;
       var itemName = 'Très Perlé ' + item.color + ' Necklace (' + item.size + ')' +
         (item.charm ? ' + Charm/Accent Pearl' : '') +
         (item.note ? (' [Note: ' + item.note + ']') : '');
@@ -864,6 +879,14 @@
       addField('amount_' + n, item.unitPrice.toFixed(2));
       addField('quantity_' + n, item.qty);
     });
+    var freeShipThreshold = 75;
+    var flatShippingRate = 6.95;
+    if (subtotal < freeShipThreshold) {
+      n++;
+      addField('item_name_' + n, 'Shipping');
+      addField('amount_' + n, flatShippingRate.toFixed(2));
+      addField('quantity_' + n, 1);
+    }
     form.submit();
   });
 
