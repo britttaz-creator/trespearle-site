@@ -3,8 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Très Perlé | Pearls for Very Good Dogs</title>
-<meta name="description" content="Chic, playful pearl necklaces thoughtfully made for pups with impeccable taste.">
+<title>Très Perlé | Luxury Pearl Stretch Dog Necklaces</title>
+<meta name="description" content="Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste. Five easy sizes, three signature styles, complimentary shipping over $75.">
+<link rel="canonical" href="https://trespearle.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23c17c63'/%3E%3Ccircle cx='20' cy='38' r='7' fill='%23fffdf9'/%3E%3Ccircle cx='32' cy='40' r='8' fill='%23fffdf9'/%3E%3Ccircle cx='44' cy='38' r='7' fill='%23fffdf9'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Très Perlé">
+<meta property="og:title" content="Très Perlé | Luxury Pearl Stretch Dog Necklaces">
+<meta property="og:description" content="Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste.">
+<meta property="og:url" content="https://trespearle.com/">
+<meta property="og:image" content="https://trespearle.com/assets/tres-perle-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Très Perlé | Luxury Pearl Stretch Dog Necklaces">
+<meta name="twitter:description" content="Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste.">
+<meta name="twitter:image" content="https://trespearle.com/assets/tres-perle-hero.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Très Perlé",
+  "url": "https://trespearle.com/",
+  "logo": "https://trespearle.com/assets/tres-perle-logo.png",
+  "sameAs": ["https://www.instagram.com/trespearle/"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Très Perlé Pearl Stretch Dog Necklace",
+  "description": "Chic pearl stretch necklace for dogs, available in three signature styles and five sizes, with an optional charm or accent pearl add-on.",
+  "brand": {"@type": "Brand", "name": "Très Perlé"},
+  "image": [
+    "https://trespearle.com/assets/product-classic.jpg",
+    "https://trespearle.com/assets/product-rose.jpg",
+    "https://trespearle.com/assets/product-noir.jpg"
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "22.00",
+    "highPrice": "36.00",
+    "availability": "https://schema.org/InStock",
+    "url": "https://trespearle.com/#shop"
+  }
+}
+</script>
 <style>
   :root{
     --ink:#211a18;
@@ -75,9 +119,10 @@
     background:linear-gradient(155deg,var(--rose-1),var(--rose-2));
     color:var(--white);padding:70px 60px;display:flex;flex-direction:column;justify-content:center;gap:20px;
   }
-  .hero-copy .eyebrow{color:#fff;opacity:.9;}
-  .hero-copy h1{font-size:4.2rem;line-height:1.05;letter-spacing:-.02em;}
-  .hero-copy p{font-size:1.05rem;max-width:36ch;line-height:1.6;opacity:.95;}
+  .hero-copy .eyebrow{color:#fff;opacity:.95;text-shadow:0 1px 6px rgba(20,14,12,.35);}
+  .hero-copy h1{font-size:4.2rem;line-height:1.05;letter-spacing:-.02em;text-shadow:0 2px 10px rgba(20,14,12,.3);}
+  .hero-copy p{font-size:1.05rem;max-width:36ch;line-height:1.6;opacity:.98;text-shadow:0 1px 6px rgba(20,14,12,.3);}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
   .btn{
     display:inline-block;background:var(--white);color:var(--ink);
     padding:16px 30px;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;
@@ -87,6 +132,8 @@
   .btn-dark{background:var(--ink);color:var(--white);}
   .btn-dark:hover{background:var(--rose-2);}
   .btn-outline{background:transparent;border:1px solid var(--ink);color:var(--ink);}
+  .btn-outline-light{background:transparent;border:1px solid rgba(255,255,255,.85);color:#fff;}
+  .btn-outline-light:hover{background:rgba(255,255,255,.15);}
   .hero-photo{background:#caa48f center/cover no-repeat;}
   .hero-photo img{width:100%;height:100%;object-fit:cover;}
 
@@ -188,13 +235,55 @@
   .ig-cta small{display:block;font-family:Arial;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-top:2px;opacity:.9;}
   .ig-follow-btn{margin-top:44px;}
 
+  /* benefits row */
+  .benefits{background:var(--cream-2);padding:64px 48px;}
+  .benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1100px;margin:0 auto;text-align:center;}
+  .benefit h3{font-family:Georgia,serif;font-size:1.15rem;margin-bottom:8px;}
+  .benefit p{font-size:.85rem;color:#6c5c56;line-height:1.6;margin:0;}
+
+  /* configurator: size help + description accordion + charm gallery */
+  .size-help{margin-top:12px;font-size:.85rem;color:#6c5c56;min-height:1.4em;}
+  .size-help a{color:var(--rose-2);text-decoration:underline;text-underline-offset:3px;}
+  .size-between{font-size:.78rem;color:#8a7a72;margin-top:6px;}
+  .charm-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px;}
+  .charm-gallery img{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);}
+  .charm-gallery-note{font-size:.76rem;color:#8a7a72;margin-top:8px;}
+  .safety-note{font-size:.78rem;color:#6c5c56;margin-top:14px;line-height:1.6;border-top:1px solid var(--line);padding-top:14px;}
+  .details-accordion{margin-top:30px;border-top:1px solid var(--line);}
+  .details-accordion details{border-bottom:1px solid var(--line);padding:16px 2px;}
+  .details-accordion summary{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:#4a3d38;font-weight:bold;}
+  .details-accordion summary::-webkit-details-marker{color:var(--rose-2);}
+  .details-accordion p, .details-accordion ul{font-size:.88rem;color:#4a3d38;line-height:1.7;margin:12px 0 0;padding-left:0;}
+  .details-accordion ul{padding-left:18px;}
+
+  /* reviews */
+  .reviews{background:var(--cream);text-align:center;}
+  .review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:820px;margin:0 auto;}
+  .review-card{background:var(--white);border:1px solid var(--line);padding:32px 28px;text-align:left;}
+  .review-card p{font-size:.95rem;color:#4a3d38;line-height:1.7;margin:0 0 14px;}
+  .review-card .who{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#6c5c56;}
+
+  /* email signup */
+  .signup{background:linear-gradient(155deg,var(--rose-1),var(--rose-2));color:#fff;text-align:center;}
+  .signup h2{font-size:2rem;text-shadow:0 1px 6px rgba(20,14,12,.25);}
+  .signup p{max-width:440px;margin:14px auto 26px;line-height:1.6;opacity:.95;}
+  .signup-form{display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+  .signup-form input[type=email]{flex:1;min-width:220px;border:none;padding:15px 16px;font-size:.9rem;background:#fffdf9;}
+  .signup-form button{background:var(--ink);color:#fff;border:none;padding:15px 26px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;}
+  .signup-form button:hover{background:#000;}
+  .signup-note{font-size:.72rem;opacity:.85;margin-top:14px;}
+
   footer{background:var(--black-bar);color:#e9e0d8;padding:56px 48px 30px;font-size:.85rem;}
   footer .social-row{display:flex;align-items:center;gap:10px;margin-top:16px;opacity:.85;}
   footer .social-row svg{width:18px;height:18px;flex-shrink:0;}
   footer .social-row a{text-decoration:underline;text-underline-offset:3px;}
   footer .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;max-width:1100px;margin:0 auto;}
   footer h4{font-family:Georgia,serif;font-size:1.2rem;margin-bottom:14px;color:#fff;}
-  footer .disclaimer{text-align:center;opacity:.6;margin-top:40px;letter-spacing:.08em;font-size:.72rem;text-transform:uppercase;}
+  footer .foot-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  footer .foot-links a{opacity:.8;}
+  footer .foot-links a:hover{opacity:1;text-decoration:underline;}
+  footer .disclaimer{text-align:center;opacity:.65;margin-top:40px;letter-spacing:.04em;font-size:.74rem;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6;text-transform:none;}
+  footer .copyright{text-align:center;opacity:.45;margin-top:18px;font-size:.7rem;letter-spacing:.06em;}
 
   /* cart drawer */
   .overlay{position:fixed;inset:0;background:rgba(20,15,13,.4);z-index:60;display:none;}
@@ -239,7 +328,25 @@
     .ig-cta .ig-glyph{width:18px;height:18px;}
     .ig-cta span{font-size:.8rem;line-height:1.25;}
     .ig-cta small{display:none;}
+    .benefits{padding:44px 22px;}
+    .benefits-grid{grid-template-columns:1fr 1fr;gap:26px;}
+    .review-grid{grid-template-columns:1fr;}
+    .signup-form{flex-direction:column;}
+    .signup-form input[type=email]{min-width:0;}
+    footer{padding:44px 22px 24px;}
+    footer .foot-grid{gap:28px;}
+    .hero-copy h1{text-shadow:0 2px 8px rgba(20,14,12,.4);}
+    .sticky-atc.show{display:flex;}
   }
+  /* sticky mobile add-to-cart */
+  .sticky-atc{
+    display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:var(--white);border-top:1px solid var(--line);
+    padding:12px 16px;align-items:center;justify-content:space-between;gap:12px;
+    box-shadow:0 -4px 16px rgba(20,14,12,.12);
+  }
+  .sticky-atc .sticky-price{font-family:Georgia,serif;font-size:1.1rem;}
+  .sticky-atc button{background:var(--ink);color:#fff;border:none;padding:13px 22px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -250,18 +357,16 @@
 
 <header>
   <button class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</button>
-  <div class="brand"><img src="assets/tres-perle-logo.png" alt="Très Perlé"></div>
-  <nav id="main-nav">
+  <div class="brand"><a href="/" style="display:flex;align-items:center;"><img src="assets/tres-perle-logo.png" alt="Très Perlé" width="500" height="182"></a></div>
+  <nav id="main-nav" aria-label="Primary">
     <a href="#shop">Shop</a>
-    <a href="#story">The Story</a>
-    <a href="#sizing">Sizing</a>
+    <a href="size-guide.html">Size Guide</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="faq.html">FAQ</a>
     <a href="#instagram">Instagram</a>
-    <a href="#journal">Journal</a>
   </nav>
   <div class="header-icons">
-    <button class="icon-btn" aria-label="Search">&#128269;</button>
-    <button class="icon-btn" aria-label="Wishlist">&#9825;</button>
-    <button class="icon-btn" id="cart-btn" aria-label="Cart">&#128092;<span id="cart-count">0</span></button>
+    <button class="icon-btn" id="cart-btn" aria-label="Open cart">&#128092;<span id="cart-count">0</span></button>
   </div>
 </header>
 
@@ -269,10 +374,34 @@
   <div class="hero-copy">
     <span class="eyebrow">Pearls for very good dogs</span>
     <h1>A little luxury for your best friend.</h1>
-    <p>Chic, playful pearl necklaces thoughtfully made for pups with impeccable taste.</p>
-    <a class="btn" href="#shop">Explore the Collection</a>
+    <p>Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="#shop">Explore the Collection</a>
+      <a class="btn btn-outline-light" href="size-guide.html">Find Their Size</a>
+    </div>
   </div>
-  <div class="hero-photo"><img src="assets/tres-perle-hero.jpg" alt="Two dachshunds wearing Très Perlé pearl necklaces"></div>
+  <div class="hero-photo"><img src="assets/tres-perle-hero.jpg" alt="Two dachshunds wearing Très Perlé pearl necklaces" width="900" height="900"></div>
+</section>
+
+<section class="benefits">
+  <div class="benefits-grid">
+    <div class="benefit">
+      <h3>Easy Stretch Fit</h3>
+      <p>Designed to slip comfortably on and off — no clasps, no fuss.</p>
+    </div>
+    <div class="benefit">
+      <h3>Made to Stand Out</h3>
+      <p>Statement pearl jewelry for pups who deserve a little extra attention.</p>
+    </div>
+    <div class="benefit">
+      <h3>Five Easy Sizes</h3>
+      <p>A simple sizing system based on your pup's neck measurement.</p>
+    </div>
+    <div class="benefit">
+      <h3>Gift-Worthy</h3>
+      <p>Perfect for birthdays, holidays, photos, and very spoiled dogs.</p>
+    </div>
+  </div>
 </section>
 
 <section class="signatures" id="shop">
@@ -283,26 +412,26 @@
 
   <div class="swatches" id="swatches">
     <div class="swatch-card" data-color="classic">
-      <img src="assets/product-classic.jpg" alt="Classicé - ivory faux pearl necklace">
+      <img src="assets/product-classic.jpg" alt="Classicé pearl stretch dog necklace - ivory faux pearls" width="600" height="600" loading="lazy">
       <div class="swatch-info">
         <h3>Classicé</h3>
-        <p>Ivory faux pearls</p>
+        <p>Pearl Stretch Dog Necklace — ivory faux pearls</p>
         <div class="price">From $22</div>
       </div>
     </div>
     <div class="swatch-card" data-color="rose">
-      <img src="assets/product-rose.jpg" alt="Rosé - blush faux pearl necklace">
+      <img src="assets/product-rose.jpg" alt="Rosé pearl stretch dog necklace - blush faux pearls" width="600" height="600" loading="lazy">
       <div class="swatch-info">
         <h3>Rosé</h3>
-        <p>Blush faux pearls</p>
+        <p>Pearl Stretch Dog Necklace — blush faux pearls</p>
         <div class="price">From $22</div>
       </div>
     </div>
     <div class="swatch-card" data-color="noir">
-      <img src="assets/product-noir.jpg" alt="Noiré - ivory and midnight faux pearl necklace">
+      <img src="assets/product-noir.jpg" alt="Noiré pearl stretch dog necklace - ivory and midnight faux pearls" width="600" height="600" loading="lazy">
       <div class="swatch-info">
         <h3>Noiré</h3>
-        <p>Ivory + midnight faux pearls</p>
+        <p>Pearl Stretch Dog Necklace — ivory + midnight faux pearls</p>
         <div class="price">From $22</div>
       </div>
     </div>
@@ -310,36 +439,43 @@
 
   <div class="configurator">
     <h3>Build Their Necklace</h3>
-    <div class="selected-name" id="selected-name">Classicé — Ivory faux pearls</div>
+    <div class="selected-name" id="selected-name">Classicé — Pearl Stretch Dog Necklace</div>
 
     <div class="field-group">
       <span class="field-label">Size</span>
       <div class="size-pills" id="size-pills">
-        <button class="pill" data-size="XS" data-delta="0">XS</button>
-        <button class="pill" data-size="S" data-delta="0">S</button>
-        <button class="pill" data-size="M" data-delta="2">M</button>
-        <button class="pill" data-size="L" data-delta="4">L</button>
-        <button class="pill" data-size="XL" data-delta="6">XL</button>
+        <button class="pill" data-size="XS" data-delta="0" data-range="7–9&quot;">XS</button>
+        <button class="pill" data-size="S" data-delta="0" data-range="9–11&quot;">S</button>
+        <button class="pill" data-size="M" data-delta="2" data-range="11–14&quot;">M</button>
+        <button class="pill" data-size="L" data-delta="4" data-range="14–18&quot;">L</button>
+        <button class="pill" data-size="XL" data-delta="6" data-range="18–22&quot;">XL</button>
       </div>
+      <div class="size-help" id="size-help"></div>
+      <div class="size-between">Between sizes? Choose the larger size. <a href="size-guide.html">Not sure? See how to measure →</a></div>
     </div>
 
     <div class="field-group">
-      <span class="field-label">Charm or Accent Pearl</span>
       <label class="charm-toggle">
         <input type="checkbox" id="charm-toggle">
         <span>Add a charm or accent pearl (+$8)</span>
       </label>
       <div id="charm-note-wrap">
-        <textarea id="charm-note" rows="2" placeholder="Tell us what you'd like — a strawberry, a gem, a key, an initial, a birthstone, etc. We'll confirm the exact style with you after checkout."></textarea>
+        <label for="charm-note" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Describe the charm or accent pearl you'd like</label>
+        <textarea id="charm-note" rows="2" placeholder="Tell us what you'd like — a gem, a symbol, an initial, a birthstone, etc. We'll confirm the exact style with you after checkout."></textarea>
+        <div class="charm-gallery">
+          <img src="assets/charm-gems.jpg" alt="Example gem-style charm colors available as add-ons" loading="lazy" width="900" height="1124">
+          <img src="assets/charm-symbols.jpg" alt="Example symbol and initial charm styles available as add-ons" loading="lazy" width="900" height="1124">
+        </div>
+        <div class="charm-gallery-note">A few charm &amp; accent styles for inspiration — just describe your pick above and we'll confirm it with you before your order ships.</div>
       </div>
     </div>
 
     <div class="field-group">
       <span class="field-label">Quantity</span>
       <div class="qty-row">
-        <button class="qty-btn" id="qty-minus">−</button>
-        <span id="qty-val">1</span>
-        <button class="qty-btn" id="qty-plus">+</button>
+        <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
+        <span id="qty-val" aria-live="polite">1</span>
+        <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
       </div>
     </div>
 
@@ -349,28 +485,57 @@
     </div>
 
     <button class="btn btn-dark add-to-cart" id="add-to-cart" style="margin-top:26px;width:100%;">Add to Cart</button>
+
+    <div class="safety-note">Designed for style, not restraint. Très Perlé necklaces are decorative pet jewelry made with comfortable stretch for easy on + off — they're not intended for leash attachment. Supervised wear is recommended.<br>Made to order — please allow 10–14 business days to make and ship. Complimentary shipping on orders $75+. As each piece is made to order, all sales are final.</div>
+
+    <div class="details-accordion">
+      <details>
+        <summary>Details</summary>
+        <p>A dainty stretch necklace strung with faux pearls, designed to slip gently over your dog's head — no clasps, no hardware to wrestle with. Available in three signature styles and five sizes, with an optional charm or accent pearl.</p>
+      </details>
+      <details>
+        <summary>Fit + Stretch</summary>
+        <p>Each necklace is designed with comfortable stretch for an easy on-and-off fit. Sized by neck measurement — see the <a href="size-guide.html">size guide</a> for the full chart.</p>
+      </details>
+      <details>
+        <summary>Materials</summary>
+        <p>Faux pearls hand-strung on flexible elastic. Charm and accent pearl add-ons are gold-tone with faceted crystal accents.</p>
+      </details>
+      <details>
+        <summary>Care</summary>
+        <p>Wipe clean with a soft, dry cloth. Store away from moisture and remove before bath time or swimming.</p>
+      </details>
+      <details>
+        <summary>Safety</summary>
+        <p>Decorative pet jewelry — not designed for leash attachment or restraint. Remove during rough play, crating, or when your pet is unattended.</p>
+      </details>
+      <details>
+        <summary>Shipping + Returns</summary>
+        <p>Made to order — please allow 10–14 business days. Complimentary shipping on orders $75+. All sales are final; we're unable to offer returns or refunds. Questions about your order? <a href="mailto:brettekey@hotmail.com">Email us</a>.</p>
+      </details>
+    </div>
   </div>
 </section>
 
-<section class="feature" id="sizing">
-  <div>
-    <span class="eyebrow">Easy, comfortable, beautiful</span>
-    <h2>No clasps.<br>No fuss.</h2>
-    <p>Each necklace is hand-strung on flexible elastic, so it slips gently over your dog's head — no tiny hardware to wrestle with.</p>
+<div class="sticky-atc" id="sticky-atc">
+  <span class="sticky-price"><span id="sticky-total">$22.00</span></span>
+  <button id="sticky-add-to-cart">Add to Cart</button>
+</div>
+
+<section class="reviews">
+  <div class="section-head">
+    <span class="eyebrow">Très Perlé Pups</span>
+    <h2>Spotted in Très Perlé</h2>
   </div>
-  <div class="size-card">
-    <span class="eyebrow">Choose their fit</span>
-    <h3 style="font-size:1.6rem;margin:10px 0 0;">A little body. A perfect fit.</h3>
-    <div class="size-row">
-      <div class="doxie-step" style="width:24px;height:16px;"></div>
-      <div class="doxie-step" style="width:34px;height:20px;"></div>
-      <div class="doxie-step" style="width:46px;height:26px;"></div>
-      <div class="doxie-step" style="width:60px;height:32px;"></div>
-      <div class="doxie-step" style="width:76px;height:40px;"></div>
+  <div class="review-grid">
+    <div class="review-card">
+      <p>"I love love love my pearl necklace. My little girl doesn't go anywhere without it!"</p>
+      <div class="who">— Stevie</div>
     </div>
-    <div class="size-labels"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-    <p style="margin-top:18px;font-size:.85rem;color:#6c5c56;">Measure around the widest part of their chest for their best fit.</p>
-    <img src="assets/dachshund-size-guide.png" alt="Dachshund size guide" style="margin-top:20px;">
+    <div class="review-card">
+      <p>"I am obsessed, I love the little charm; I have a matching necklace with my baby, these are so darling and the quality is fantastic!"</p>
+      <div class="who">— Brittany</div>
+    </div>
   </div>
 </section>
 
@@ -378,6 +543,7 @@
   <span class="eyebrow">For the love of dogs</span>
   <h2>Because your best friend deserves a little indulgence.</h2>
   <p>Très Perlé creates joyful, elevated adornments for the dogs who make everyday life more beautiful. Every piece is designed with the same care you'd give a fine piece of your own jewelry — because they deserve nothing less.</p>
+  <a class="btn btn-outline" href="our-story.html" style="margin-top:26px;">Read Our Story</a>
 </section>
 
 <section class="instagram" id="instagram">
@@ -389,23 +555,23 @@
 
   <div class="ig-grid">
     <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-1.jpg" alt="Dachshund wearing a Très Perlé pearl necklace, Instagram post">
+      <img src="assets/ig-1.jpg" alt="Dachshund wearing a Très Perlé pearl necklace, Instagram post" width="600" height="600" loading="lazy">
       <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
     </a>
     <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-2.jpg" alt="Très Perlé styled Instagram post featuring dachshunds in pearls">
+      <img src="assets/ig-2.jpg" alt="Très Perlé styled Instagram post featuring dachshunds in pearls" width="600" height="600" loading="lazy">
       <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
     </a>
     <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-3.jpg" alt="Two dachshunds wearing Très Perlé pearl necklaces, Instagram post">
+      <img src="assets/ig-3.jpg" alt="Two dachshunds wearing Très Perlé pearl necklaces, Instagram post" width="600" height="600" loading="lazy">
       <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
     </a>
     <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-4.jpg" alt="Meet the Collection - Classicé, Rosé and Noiré, Instagram post">
+      <img src="assets/ig-4.jpg" alt="Meet the Collection - Classicé, Rosé and Noiré, Instagram post" width="600" height="600" loading="lazy">
       <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
     </a>
     <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-5.jpg" alt="Dachshunds wearing Très Perlé pearls outdoors, Instagram post">
+      <img src="assets/ig-5.jpg" alt="Dachshunds wearing Très Perlé pearls outdoors, Instagram post" width="600" height="600" loading="lazy">
       <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
     </a>
     <a class="ig-tile ig-cta" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
@@ -418,35 +584,64 @@
   <a class="btn btn-outline ig-follow-btn" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">Follow on Instagram</a>
 </section>
 
-<footer id="journal">
+<section class="signup">
+  <span class="eyebrow">Stay in Touch</span>
+  <h2>Join the Pup List</h2>
+  <p>New styles, pretty pups, and a little sparkle in your inbox.</p>
+  <form class="signup-form" id="signup-form">
+    <input type="email" id="signup-email" placeholder="Your email address" aria-label="Email address" required>
+    <button type="submit">Join</button>
+  </form>
+  <div class="signup-note">We'll never share your email. Unsubscribe anytime.</div>
+</section>
+
+<footer>
   <div class="foot-grid">
     <div>
       <h4>Très Perlé</h4>
-      <p style="max-width:32ch;opacity:.75;">Pearls for very good dogs. Chic, playful necklaces made for pups with impeccable taste.</p>
-    </div>
-    <div>
-      <h4>Say Hello</h4>
-      <p style="opacity:.75;">Questions about sizing, charms, or your order?<br>We're happy to help.</p>
+      <p style="max-width:32ch;opacity:.75;">Pearls for very good dogs. Chic, playful stretch necklaces made for pups with impeccable taste.</p>
       <div class="social-row">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
         <a href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">@trespearle on Instagram</a>
       </div>
     </div>
+    <div>
+      <h4>Shop</h4>
+      <ul class="foot-links">
+        <li><a href="#shop">Build Their Necklace</a></li>
+        <li><a href="size-guide.html">Size Guide</a></li>
+        <li><a href="our-story.html">Our Story</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul class="foot-links">
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+        <li><a href="mailto:brettekey@hotmail.com">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Say Hello</h4>
+      <p style="opacity:.75;">Questions about sizing, charms, or your order?<br>Email Brette at <a href="mailto:brettekey@hotmail.com" style="text-decoration:underline;">brettekey@hotmail.com</a> — we're happy to help.</p>
+    </div>
   </div>
-  <div class="disclaimer">Decorative accessory · Not for leash attachment</div>
+  <div class="disclaimer">Très Perlé necklaces are decorative pet jewelry designed for style, not restraint — they are not intended for leash attachment. Supervised wear is recommended; remove during rough play, crating, or when your pet is unattended.</div>
+  <div class="copyright">© <span id="copyright-year"></span> Très Perlé. All rights reserved.</div>
 </footer>
 
 <div class="overlay" id="overlay"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-head">
     <h3>Your Cart</h3>
-    <button class="drawer-close" id="drawer-close">&times;</button>
+    <button class="drawer-close" id="drawer-close" aria-label="Close cart">&times;</button>
   </div>
   <div class="cart-items" id="cart-items"></div>
   <div class="drawer-foot">
+    <div class="pay-note" id="free-shipping-msg" style="margin-bottom:14px;"></div>
     <div class="subtotal"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
     <button class="pay-btn" id="checkout-btn">Checkout with PayPal / Venmo</button>
-    <div class="pay-note">Secure checkout via PayPal. Venmo appears automatically as a payment option for eligible U.S. buyers.</div>
+    <div class="pay-note">Secure checkout via PayPal. Venmo appears automatically as a payment option for eligible U.S. buyers. All sales are final.</div>
   </div>
 </div>
 
@@ -511,25 +706,42 @@
   function selectColor(color){
     state.color = color;
     swatchEls.forEach(function(el){ el.classList.toggle('selected', el.dataset.color === color); });
-    document.getElementById('selected-name').textContent = PRODUCTS[color].name + ' — ' + PRODUCTS[color].desc;
+    document.getElementById('selected-name').textContent = PRODUCTS[color].name + ' — Pearl Stretch Dog Necklace';
     updatePrice();
   }
-  function selectSize(size, delta){
+  function selectSize(size, delta, range){
     state.size = size; state.delta = delta;
     pillEls.forEach(function(el){ el.classList.toggle('selected', el.dataset.size === size); });
+    var help = document.getElementById('size-help');
+    if (help) help.textContent = size + ' — Fits necks ' + range;
     updatePrice();
   }
   function unitPrice(){
     return BASE_PRICE + state.delta + (state.charm ? CHARM_PRICE : 0);
   }
   function updatePrice(){
-    document.getElementById('unit-total').textContent = '$' + unitPrice().toFixed(2);
+    var p = '$' + unitPrice().toFixed(2);
+    document.getElementById('unit-total').textContent = p;
+    var stickyTotal = document.getElementById('sticky-total');
+    if (stickyTotal) stickyTotal.textContent = p;
   }
 
   swatchEls.forEach(function(el){ el.addEventListener('click', function(){ selectColor(el.dataset.color); }); });
-  pillEls.forEach(function(el){ el.addEventListener('click', function(){ selectSize(el.dataset.size, parseFloat(el.dataset.delta)); }); });
+  pillEls.forEach(function(el){ el.addEventListener('click', function(){ selectSize(el.dataset.size, parseFloat(el.dataset.delta), el.dataset.range); }); });
   pillEls[0].click();
   selectColor('classic');
+
+  /* ---------- sticky mobile add-to-cart ---------- */
+  var stickyAtc = document.getElementById('sticky-atc');
+  var configuratorEl = document.querySelector('.configurator');
+  if (stickyAtc && configuratorEl) {
+    window.addEventListener('scroll', function(){
+      var rect = configuratorEl.getBoundingClientRect();
+      var pastConfigurator = rect.bottom < 0;
+      stickyAtc.classList.toggle('show', pastConfigurator);
+    }, {passive:true});
+    document.getElementById('sticky-add-to-cart').addEventListener('click', function(){ addToCart(); });
+  }
 
   charmToggle.addEventListener('change', function(){
     state.charm = charmToggle.checked;
@@ -592,6 +804,17 @@
     });
     document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
     document.getElementById('cart-count').textContent = count;
+    var freeShipThreshold = 75;
+    var shipMsgEl = document.getElementById('free-shipping-msg');
+    if (shipMsgEl) {
+      if (cart.length === 0) {
+        shipMsgEl.textContent = '';
+      } else if (subtotal >= freeShipThreshold) {
+        shipMsgEl.textContent = 'You\'ve unlocked complimentary shipping.';
+      } else {
+        shipMsgEl.textContent = 'You\'re $' + (freeShipThreshold - subtotal).toFixed(2) + ' away from complimentary shipping.';
+      }
+    }
     wrap.querySelectorAll('.remove').forEach(function(btn){
       btn.addEventListener('click', function(){
         var cart = loadCart();
@@ -645,6 +868,22 @@
   });
 
   renderCart();
+
+  /* ---------- footer copyright year ---------- */
+  var yearEl = document.getElementById('copyright-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- email signup (no ESP connected yet: opens a pre-filled email as a stand-in) ---------- */
+  var signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var email = document.getElementById('signup-email').value;
+      window.location.href = 'mailto:brettekey@hotmail.com?subject=' +
+        encodeURIComponent('Join the Pup List') +
+        '&body=' + encodeURIComponent('Please add me to the Très Perlé email list: ' + email);
+    });
+  }
 })();
 </script>
 </body>
