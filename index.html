@@ -316,6 +316,7 @@
     .hero-copy{padding:50px 26px;}
     .hero-copy h1{font-size:2.6rem;}
     .hero-photo{min-height:320px;}
+    .hero-photo img{object-position:78% 50%;}
     section{padding:64px 22px;}
     .swatches{grid-template-columns:1fr;}
     .feature{grid-template-columns:1fr;}
@@ -371,6 +372,9 @@
   .tryon-controls[hidden]{display:none;}
   .tryon-controls label{display:flex;align-items:center;gap:8px;}
   .tryon-controls input[type=range]{width:110px;accent-color:var(--rose-2);}
+  .tryon-status{font-size:.8rem;color:#6c5c56;margin:10px 0 0;min-height:0;}
+  .tryon-status:empty{display:none;}
+  .tryon-status.err{color:#b03a2e;}
   .tryon-note{font-size:.72rem;color:#9a8a82;margin:8px 0 0;}
   .gallery-caption{margin-top:12px;font-size:.85rem;color:#6c5c56;text-align:center;letter-spacing:.04em;}
   .builder{background:var(--white);border:1px solid var(--line);padding:36px 36px 30px;}
@@ -407,6 +411,14 @@
   .charm-gallery figure{margin:0;}
   .charm-gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid var(--line);}
   .charm-gallery figcaption{font-size:.75rem;color:#6c5c56;margin-top:5px;text-align:center;}
+  .charm-pick-label{margin:2px 0 10px;}
+  .charm-pick-label strong{color:#6c5c56;font-weight:400;text-transform:none;letter-spacing:.02em;}
+  .charm-picker{display:flex;flex-wrap:wrap;gap:10px;}
+  .charm-swatch{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;padding:0;display:flex;align-items:center;justify-content:center;}
+  .charm-swatch svg{width:30px;height:30px;}
+  .charm-swatch.selected{box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--ink);}
+  .charm-swatch.other{font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:#6c5c56;width:auto;padding:0 12px;border-radius:20px;}
+  .gallery-link{display:inline-block;margin-top:12px;font-size:.8rem;color:var(--rose-2);text-decoration:underline;text-underline-offset:3px;}
   .charm-hint{font-size:.82rem;color:#6c5c56;margin:10px 0 0;line-height:1.5;}
   .custom-note{background:var(--cream);border-left:3px solid var(--rose-2);padding:14px 16px;font-size:.86rem;line-height:1.65;color:#4a3d38;margin-bottom:12px;}
   .custom-note strong{color:var(--ink);}
@@ -418,8 +430,9 @@
   .step-head{margin-bottom:12px;}
   .step-head strong{color:#6c5c56;font-weight:400;letter-spacing:.02em;text-transform:none;}
   .style-grid{display:flex !important;flex-wrap:wrap;gap:12px;}
-  .style-chip{width:58px;height:58px;padding:0 !important;border-radius:50%;overflow:hidden;border:1px solid var(--line) !important;box-shadow:none !important;}
-  .style-chip img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;transform:scale(1.2);}
+  .style-chip[hidden]{display:none !important;}
+  .style-chip{width:64px;height:64px;padding:0 !important;border-radius:10px;overflow:hidden;border:1px solid var(--line) !important;box-shadow:none !important;}
+  .style-chip img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;}
   .style-chip.selected{box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--ink) !important;}
   .charm-options{flex-direction:row !important;flex-wrap:wrap;gap:8px !important;}
   .charm-opt{padding:9px 14px !important;font-size:.85rem !important;}
@@ -499,7 +512,7 @@
     .product{grid-template-columns:1fr;gap:22px;}
     .gallery{position:static;}
     .builder{padding:26px 18px;}
-    .style-chip{width:52px;height:52px;}
+    .style-chip{width:60px;height:60px;}
     .ig-grid-12{grid-template-columns:repeat(3,1fr);}
     .contact-inner{grid-template-columns:1fr;gap:26px;}
     .contact-form{padding:22px 18px;}
@@ -522,6 +535,7 @@
     <a href="size-guide.html">Size Guide</a>
     <a href="our-story.html">Our Story</a>
     <a href="faq.html">FAQ</a>
+    <a href="gallery.html">Gallery</a>
     <a href="#instagram">Instagram</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -594,6 +608,7 @@
           <label>Angle <input type="range" id="tryon-rotate" min="-45" max="45" step="1" value="0"></label>
           <button type="button" class="link-btn" id="tryon-reset">Back to Guppy</button>
         </div>
+        <p class="tryon-status" id="tryon-status" role="status" aria-live="polite"></p>
         <p class="tryon-note">Your photo stays private on your device — it's never uploaded.</p>
       </div>
     </div>
@@ -607,6 +622,7 @@
       <div class="step">
         <div class="step-head"><span class="step-num">1</span><span class="field-label">Pearl style — <strong id="style-name">Classicé</strong></span></div>
         <div class="style-grid" id="style-grid"></div>
+        <a class="gallery-link" href="gallery.html">See every style in the gallery →</a>
         
       </div>
 
@@ -636,14 +652,13 @@
           <label class="field-label" for="birthstone">Birth month</label>
           <select id="birthstone"></select>
           <div id="birthstone-dots" hidden></div>
-          <details class="charm-peek"><summary>See the birthstone charms</summary><div class="charm-gallery one"><figure><img src="assets/charm-crystals.jpg" alt="Faceted crystal birthstone drop charms in twelve colors" loading="lazy" width="800" height="800"><figcaption>Faceted crystal birthstone drops</figcaption></figure></div></details>
+          <a class="gallery-link" href="gallery.html#charms">See the birthstone charms →</a>
         </div>
         <div class="charm-detail" id="custom-wrap">
-          <details class="charm-peek" open><summary>See the stone &amp; enamel charms</summary><div class="charm-gallery">
-            <figure><img src="assets/charm-stones.jpg" alt="Natural stone teardrop charms — rose quartz, amethyst, aventurine, jasper and more" loading="lazy" width="800" height="800"><figcaption>Natural stone teardrops</figcaption></figure>
-            <figure><img src="assets/charm-enamel.jpg" alt="Gold enamel charms — moon, star and lightning bolt in pink, navy, black and pearl white" loading="lazy" width="800" height="800"><figcaption>Enamel moon, star &amp; bolt</figcaption></figure>
-          </div></details>
-          <p class="charm-hint">Note your favorite below — e.g. “pink enamel moon” or “amethyst teardrop.”</p>
+          
+          <label class="field-label" for="charm-select">Which charm?</label>
+          <select id="charm-select"></select>
+          <a class="gallery-link" href="gallery.html#charms">Browse all charms in the gallery →</a>
         </div>
       </div>
 
@@ -815,6 +830,7 @@
       <h4>Shop</h4>
       <ul class="foot-links">
         <li><a href="#shop">Design Their Necklace</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="size-guide.html">Size Guide</a></li>
         <li><a href="our-story.html">Our Story</a></li>
       </ul>
@@ -928,6 +944,7 @@
      PRODUCT OPTIONS — edit this list to add/remove styles.
      img: photo shown when selected. dots: swatch colors.
      ========================================================= */
+  var FEATURED = ['classic','rose','noir','bleu','ombre','custom'];
   var STYLES = [
     {id:'classic',     name:'Classicé',    desc:'Ivory faux pearls',                              img:'assets/product-classic.jpg',    dots:['#f4efe6','#e9e1d3']},
     {id:'rose',        name:'Rosé',        desc:'Blush pearls + iridescent crystals',             img:'assets/style-rose.jpg',         dots:['#f2a7b0','#e9e4f5']},
@@ -946,6 +963,21 @@
     ['July','Ruby','#c4102e'],['August','Peridot','#9ccc3a'],['September','Sapphire','#1f47b0'],
     ['October','Rose','#f2a7c0'],['November','Topaz','#f0a52b'],['December','Blue Zircon','#1aa3b8']
   ];
+  var CHARM_LIST = [
+    ['enamel-pink-moon','Pink enamel moon','enamel','#f2a7b0','moon'],
+    ['enamel-navy-moon','Navy enamel moon','enamel','#1f4f9c','moon'],
+    ['enamel-black-star','Black enamel star','enamel','#17161b','star'],
+    ['enamel-pearl-bolt','Pearl enamel bolt','enamel','#f4ead9','bolt'],
+    ['stone-rose','Rose quartz teardrop','stone','#f0c3c7'],
+    ['stone-amethyst','Amethyst teardrop','stone','#8a62b7'],
+    ['stone-amazonite','Amazonite teardrop','stone','#6cc2bd'],
+    ['stone-sunstone','Sunstone teardrop','stone','#df704e'],
+    ['stone-blue','Blue aventurine teardrop','stone','#5a6db6'],
+    ['stone-labradorite','Labradorite teardrop','stone','#5b5f67'],
+    ['stone-howlite','Howlite teardrop','stone','#f1f0ec'],
+    ['stone-dalmatian','Dalmatian jasper teardrop','stone','#ebe3d5','',1]
+  ];
+  window.TP_CHARMS = {}; CHARM_LIST.forEach(function(c){ window.TP_CHARMS[c[0]] = {name:c[1], type:c[2], color:c[3], sym:c[4], spots:!!c[5]}; });
   window.TP_BIRTHSTONES = {}; BIRTHSTONES.forEach(function(b){ window.TP_BIRTHSTONES[b[0]] = b[2]; });
 
   /* =========================================================
@@ -1022,7 +1054,33 @@
     var place = {x:0, y:0, s:1, r:0}, CX = 680, CY = 320;
     function applyPlace(){ group.setAttribute('transform', 'translate(' + place.x + ' ' + place.y + ') rotate(' + place.r + ' ' + CX + ' ' + CY + ') translate(' + CX + ' ' + CY + ') scale(' + place.s + ') translate(' + (-CX) + ' ' + (-CY) + ')'); }
 
-    function draw(styleId, charm, month){
+    var CHARMS = window.TP_CHARMS;
+    function drawCharmIcon(parent, choice, cx, cy, k){
+      // k = scale; draws pendant whose bail top is at (cx, cy)
+      var ch = CHARMS[choice] || CHARMS['enamel-pink-moon'];
+      if (ch.type === 'enamel'){
+        var y = cy + 12*k;
+        el('ellipse', {cx:cx, cy:y, rx:12*k, ry:13*k, fill:'url(#' + grad(C.gold) + ')', filter:'url(#bead-shadow)'}, parent);
+        el('ellipse', {cx:cx, cy:y, rx:9.5*k, ry:10.5*k, fill:'url(#' + grad(ch.color) + ')'}, parent);
+        var gold = '#e9c46e';
+        if (ch.sym === 'moon') el('path', {d:'M' + (cx+2*k) + ' ' + (y-6*k) + ' a6.5 6.5 0 1 0 0 12 a5 5 0 1 1 0 -12z', transform: k === 1 ? '' : 'translate(' + (cx*(1-k)) + ' ' + (y*(1-k)) + ') scale(' + k + ')', fill:gold}, parent);
+        if (ch.sym === 'star'){ var pts = []; for (var i = 0; i < 10; i++){ var a = -Math.PI/2 + i*Math.PI/5, rr = (i % 2 ? 2.6 : 6.2)*k; pts.push((cx + rr*Math.cos(a)).toFixed(1) + ',' + (y + rr*Math.sin(a)).toFixed(1)); } el('polygon', {points:pts.join(' '), fill:gold}, parent); }
+        if (ch.sym === 'bolt') el('polygon', {points:[[1.5,-7],[-3.5,1],[0,1],[-1.5,7],[3.5,-1],[0,-1]].map(function(p){ return (cx + p[0]*k) + ',' + (y + p[1]*k); }).join(' '), fill:gold}, parent);
+      } else {
+        var y0 = cy + 1*k, w = 9.5*k, hgt = 24*k;
+        var drop = 'M' + cx + ' ' + y0 + ' C ' + (cx+w) + ' ' + (y0+hgt*.45) + ' ' + (cx+w*1.05) + ' ' + (y0+hgt) + ' ' + cx + ' ' + (y0+hgt) + ' C ' + (cx-w*1.05) + ' ' + (y0+hgt) + ' ' + (cx-w) + ' ' + (y0+hgt*.45) + ' ' + cx + ' ' + y0 + 'Z';
+        el('path', {d:drop, fill:'url(#' + grad(C.gold) + ')', filter:'url(#bead-shadow)'}, parent);
+        var w2 = w*.78, y2 = y0 + 2.6*k, h2 = hgt - 4.4*k;
+        el('path', {d:'M' + cx + ' ' + y2 + ' C ' + (cx+w2) + ' ' + (y2+h2*.45) + ' ' + (cx+w2*1.05) + ' ' + (y2+h2) + ' ' + cx + ' ' + (y2+h2) + ' C ' + (cx-w2*1.05) + ' ' + (y2+h2) + ' ' + (cx-w2) + ' ' + (y2+h2*.45) + ' ' + cx + ' ' + y2 + 'Z', fill:'url(#' + grad(ch.color) + ')'}, parent);
+        if (ch.spots) [[-3,9],[2,13],[-1,17],[3,7],[-4,15]].forEach(function(p){ el('circle', {cx:cx + p[0]*k, cy:y0 + p[1]*k, r:1*k, fill:'#2a2522'}, parent); });
+        el('ellipse', {cx:cx - 2.5*k, cy:y0 + 9*k, rx:1.8*k, ry:3.6*k, fill:'#fff', opacity:.55}, parent);
+      }
+    }
+    function icon(choice){
+      var s2 = document.createElementNS(NS, 'svg'); s2.setAttribute('viewBox', '-16 -2 32 32');
+      drawCharmIcon(s2, choice, 0, 0, 1); return s2;
+    }
+    function draw(styleId, charm, month, choice){
       while (group.firstChild) group.removeChild(group.firstChild);
       var pat = PATTERNS[styleId] || PATTERNS.classic, BASE = 17, d = 0, k = 0, beads = [];
       while (d < TOTAL){
@@ -1054,10 +1112,7 @@
           el('path', {d:'M' + cx + ' ' + (y0+2) + ' C ' + (cx+7.5) + ' ' + (y0+10) + ' ' + (cx+7.5) + ' ' + (y0+20) + ' ' + cx + ' ' + (y0+20.5) + ' C ' + (cx-7.5) + ' ' + (y0+20) + ' ' + (cx-7.5) + ' ' + (y0+10) + ' ' + cx + ' ' + (y0+2) + 'Z', fill:'url(#' + grad(mc) + ')'}, group);
           el('ellipse', {cx:cx-2.5, cy:y0+10, rx:2, ry:3.5, fill:'#fff', opacity:.7}, group);
         } else {
-          var y1 = cy + 24;
-          el('circle', {cx:cx, cy:y1, r:12, fill:'url(#' + grad(C.gold) + ')', filter:'url(#bead-shadow)'}, group);
-          el('circle', {cx:cx, cy:y1, r:9.5, fill:'url(#' + grad('#f2a7b0') + ')'}, group);
-          el('path', {d:'M' + (cx+2) + ' ' + (y1-6) + ' a6.5 6.5 0 1 0 0 12 a5 5 0 1 1 0 -12z', fill:'#e7c26c'}, group);
+          drawCharmIcon(group, choice, cx, cy + 12, 1);
         }
       }
     }
@@ -1071,15 +1126,45 @@
       photo.alt = m === 'guppy' ? 'Guppy, a one-year-old mini dachshund, modeling the selected necklace' : 'Your pet wearing the selected necklace';
       controls.hidden = m === 'guppy';
       document.getElementById('model-caption').textContent = m === 'guppy' ? 'Modeled by Guppy, our one-year-old mini dachshund' : 'Drag the necklace into place, then adjust the size';
-      place = m === 'guppy' ? {x:0, y:0, s:1, r:0} : {x:-140, y:180, s:1.6, r:0};
+      place = m === 'guppy' ? {x:0, y:0, s:1, r:0} : {x:-100, y:150, s:1.5, r:0};
       document.getElementById('tryon-size').value = place.s; document.getElementById('tryon-rotate').value = 0;
       svg.classList.toggle('draggable', m !== 'guppy');
       applyPlace();
     }
+    var note = document.getElementById('tryon-status');
+    function status(msg, err){ note.textContent = msg; note.classList.toggle('err', !!err); }
+    function loadScript(src){ return new Promise(function(res, rej){ var sc = document.createElement('script'); sc.src = src; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc); }); }
+    // Turn any phone photo (incl. iPhone HEIC) into a right-side-up, reasonably sized JPEG
+    function normalize(blob){
+      return new Promise(function(res, rej){
+        var url = URL.createObjectURL(blob), img = new Image();
+        img.onload = function(){
+          var max = 1400, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+          var cv = document.createElement('canvas'); cv.width = Math.round(w*k); cv.height = Math.round(h*k);
+          cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
+          cv.toBlob(function(b){ b ? res(URL.createObjectURL(b)) : rej(new Error('canvas')); }, 'image/jpeg', 0.9);
+        };
+        img.onerror = function(){ URL.revokeObjectURL(url); rej(new Error('decode')); };
+        img.src = url;
+      });
+    }
+    function isHeic(f){ return /hei[cf]/i.test(f.type) || /\.hei[cf]$/i.test(f.name || ''); }
     document.getElementById('tryon-file').addEventListener('change', function(e){
-      var f = e.target.files && e.target.files[0]; if (!f) return;
-      var url = URL.createObjectURL(f);
-      setMode('pet', url); showView('model');
+      var input = e.target, f = input.files && input.files[0]; if (!f) return;
+      status('Loading your photo…');
+      var p = normalize(f).catch(function(){
+        if (!isHeic(f)) throw new Error('unsupported');
+        status('Converting your iPhone photo…');
+        return (window.heic2any ? Promise.resolve() : loadScript('https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js'))
+          .then(function(){ return window.heic2any({blob:f, toType:'image/jpeg', quality:0.9}); })
+          .then(function(out){ return normalize(Array.isArray(out) ? out[0] : out); });
+      });
+      p.then(function(url){
+        setMode('pet', url); showView('model'); status('');
+        document.getElementById('model-view').scrollIntoView({behavior:'smooth', block:'center'});
+      }).catch(function(){
+        status('Sorry, we couldn’t open that photo. Please try a JPG or PNG (on iPhone, a screenshot of the photo works too).', true);
+      }).finally(function(){ input.value = ''; });
     });
     document.getElementById('tryon-reset').addEventListener('click', function(){ document.getElementById('tryon-file').value = ''; setMode('guppy'); });
     document.getElementById('tryon-size').addEventListener('input', function(e){ place.s = parseFloat(e.target.value); applyPlace(); });
@@ -1098,18 +1183,19 @@
     }
     document.querySelectorAll('.view-tab').forEach(function(b){ b.addEventListener('click', function(){ showView(b.dataset.view); }); });
     applyPlace();
-    return {draw:draw, showView:showView};
+    return {draw:draw, showView:showView, icon:icon};
   })();
 
   var BASE_PRICE = 22, CHARM_PRICE = 8, FREE_SHIP = 100, FLAT_SHIP = 9.95;
 
-  var state = {style:'classic', size:'XS', delta:0, charm:'none', month:'', note:'', qty:1};
+  var state = {style:'classic', size:'XS', delta:0, charm:'none', month:'', charmChoice:'enamel-pink-moon', note:'', qty:1};
   var styleById = function(id){ return STYLES.filter(function(s){return s.id===id;})[0]; };
 
   /* style grid */
   var grid = document.getElementById('style-grid');
   STYLES.forEach(function(s){
     var b = document.createElement('button');
+    if (FEATURED.indexOf(s.id) < 0) b.hidden = true;
     b.type = 'button'; b.className = 'style-chip'; b.dataset.style = s.id;
     b.setAttribute('aria-label', s.name + ' — ' + s.desc);
     b.title = s.name;
@@ -1119,7 +1205,7 @@
   });
   function selectStyle(id){
     var s = styleById(id); state.style = id;
-    grid.querySelectorAll('.style-chip').forEach(function(el){ el.classList.toggle('selected', el.dataset.style === id); });
+    grid.querySelectorAll('.style-chip').forEach(function(el){ el.classList.toggle('selected', el.dataset.style === id); if (el.dataset.style === id) el.hidden = false; });
     document.getElementById('style-name').textContent = s.name + ' · ' + s.desc;
     var main = document.getElementById('main-photo');
     main.src = s.img; main.alt = s.name + ' pearl stretch pet necklace — ' + s.desc;
@@ -1153,6 +1239,17 @@
     state.month = monthSel.value; updatePrice();
     document.querySelectorAll('#birthstone-dots button').forEach(function(b){ b.classList.toggle('selected', b.dataset.month === state.month); });
   });
+  var charmSel = document.getElementById('charm-select');
+  charmSel.innerHTML = '<optgroup label="Enamel">' + CHARM_LIST.filter(function(c){ return c[2] === 'enamel'; }).map(function(c){ return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('') + '</optgroup>' +
+    '<optgroup label="Natural stone">' + CHARM_LIST.filter(function(c){ return c[2] === 'stone'; }).map(function(c){ return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('') + '</optgroup>' +
+    '<option value="other">Something else — describe it in your notes</option>';
+  charmSel.addEventListener('change', function(){ selectCharmChoice(charmSel.value); });
+  function selectCharmChoice(id){
+    if (id !== 'other' && !window.TP_CHARMS[id]) id = 'enamel-pink-moon';
+    state.charmChoice = id; charmSel.value = id;
+    updatePrice();
+  }
+  selectCharmChoice('enamel-pink-moon');
   function setCharm(v){
     state.charm = v;
     document.querySelectorAll('input[name=charm]').forEach(function(r){ r.checked = r.value === v; });
@@ -1171,7 +1268,7 @@
   document.getElementById('qty-plus').addEventListener('click', function(){ state.qty++; qtyVal.textContent = state.qty; });
   function unitPrice(){ return BASE_PRICE + state.delta + (state.charm !== 'none' ? CHARM_PRICE : 0); }
   function updatePrice(){
-    try { Preview.draw(state.style, state.charm, state.month); } catch(e){}
+    try { Preview.draw(state.style, state.charm, state.month, state.charmChoice); } catch(e){}
     var p = '$' + unitPrice().toFixed(2);
     document.getElementById('unit-total').textContent = p;
     document.getElementById('sticky-total').textContent = p;
@@ -1179,6 +1276,14 @@
 
   selectSize(pillEls[0]);
   selectStyle('classic');
+  (function(){
+    var q = new URLSearchParams(location.search);
+    if (q.get('style') && styleById(q.get('style'))) selectStyle(q.get('style'));
+    if (q.get('charm')){
+      if (q.get('charm') === 'birthstone') setCharm('birthstone');
+      else if (window.TP_CHARMS[q.get('charm')]) { setCharm('custom'); selectCharmChoice(q.get('charm')); }
+    }
+  })();
 
   /* ---------- cart (stored in this browser) ---------- */
   var CART_KEY = 'tp_cart_v2', GIFT_KEY = 'tp_gift';
@@ -1187,7 +1292,7 @@
 
   function charmLabel(item){
     if (item.charm === 'birthstone') return 'Birthstone charm' + (item.month ? ' (' + item.month + ')' : '');
-    if (item.charm === 'custom') return 'Stone/enamel charm';
+    if (item.charm === 'custom') return (item.charmChoice && item.charmChoice !== 'other' && window.TP_CHARMS[item.charmChoice]) ? window.TP_CHARMS[item.charmChoice].name + ' charm' : 'Custom charm';
     return '';
   }
   function itemTitle(item){ return item.styleName + ' Pearl Necklace'; }
@@ -1200,7 +1305,7 @@
 
   function validate(){
     if (state.charm === 'birthstone' && !state.month){ flash('birthstone-wrap', 'Please choose a birth month.'); return false; }
-    if (state.charm === 'custom' && !state.note.trim()){ flash('notes-step', 'Please tell us which charm you’d like in your notes.'); return false; }
+    if (state.charm === 'custom' && state.charmChoice === 'other' && !state.note.trim()){ flash('notes-step', 'Please describe the charm you’d like in your notes.'); return false; }
     if (state.style === 'custom' && !state.note.trim()){ flash('notes-step', 'Please describe your custom colors in your notes.'); return false; }
     return true;
   }
@@ -1215,7 +1320,7 @@
     if (!validate()) return;
     var s = styleById(state.style);
     var item = {style:s.id, styleName:s.name, img:s.img, size:state.size, delta:state.delta, charm:state.charm,
-      month:state.charm === 'birthstone' ? state.month : '', note:state.note.trim(), qty:state.qty, unitPrice:unitPrice()};
+      month:state.charm === 'birthstone' ? state.month : '', charmChoice:state.charm === 'custom' ? state.charmChoice : '', note:state.note.trim(), qty:state.qty, unitPrice:unitPrice()};
     var cart = loadCart(); cart.push(item); saveCart(cart);
     renderCart();
     openUpsell(cart.length - 1);
