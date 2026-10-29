@@ -419,6 +419,16 @@
   .charm-swatch.selected{box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--ink);}
   .charm-swatch.other{font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:#6c5c56;width:auto;padding:0 12px;border-radius:20px;}
   .gallery-link{display:inline-block;margin-top:12px;font-size:.8rem;color:var(--rose-2);text-decoration:underline;text-underline-offset:3px;}
+  #style-grid.style-grid{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:440px;margin:0 auto;}
+  .style-tile{background:none;border:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;}
+  .st-img{display:block;width:100%;aspect-ratio:1/1;border-radius:8px;overflow:hidden;border:1px solid var(--line);transition:box-shadow .2s;}
+  .st-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .st-name{font-family:Georgia,serif;font-size:.92rem;color:var(--ink);text-align:center;}
+  .style-tile.selected .st-img{box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--ink);}
+  .custom-tile .caret{font-size:.7rem;color:#8a7a72;}
+  .custom-style-wrap{margin-top:18px;}
+  .custom-style-wrap[hidden]{display:none;}
+  .custom-style-wrap select{width:100%;border:1px solid var(--line);padding:12px 14px;font-size:.9rem;background:var(--cream);font-family:inherit;}
   .charm-hint{font-size:.82rem;color:#6c5c56;margin:10px 0 0;line-height:1.5;}
   .custom-note{background:var(--cream);border-left:3px solid var(--rose-2);padding:14px 16px;font-size:.86rem;line-height:1.65;color:#4a3d38;margin-bottom:12px;}
   .custom-note strong{color:var(--ink);}
@@ -622,7 +632,11 @@
       <div class="step">
         <div class="step-head"><span class="step-num">1</span><span class="field-label">Pearl style — <strong id="style-name">Classicé</strong></span></div>
         <div class="style-grid" id="style-grid"></div>
-        <a class="gallery-link" href="gallery.html">See every style in the gallery →</a>
+        <div class="custom-style-wrap" id="custom-style-wrap" hidden>
+          <label class="field-label" for="custom-style">Choose a custom design</label>
+          <select id="custom-style"></select>
+          <a class="gallery-link" href="gallery.html">See them all in the gallery →</a>
+        </div>
         
       </div>
 
@@ -944,18 +958,20 @@
      PRODUCT OPTIONS — edit this list to add/remove styles.
      img: photo shown when selected. dots: swatch colors.
      ========================================================= */
-  var FEATURED = ['classic','rose','noir','bleu','ombre','custom'];
+  var FEATURED = ['classic','rose','noir'];
   var STYLES = [
     {id:'classic',     name:'Classicé',    desc:'Ivory faux pearls',                              img:'assets/product-classic.jpg',    dots:['#f4efe6','#e9e1d3']},
-    {id:'rose',        name:'Rosé',        desc:'Blush pearls + iridescent crystals',             img:'assets/style-rose.jpg',         dots:['#f2a7b0','#e9e4f5']},
-    {id:'noir',        name:'Noiré',       desc:'Ivory + onyx pearls, heart charm',               img:'assets/style-noir.jpg',         dots:['#f4efe6','#1d1b22']},
+    {id:'rose',        name:'Rosé',        desc:'Blush faux pearls',                              img:'assets/product-rose.jpg',       dots:['#f2a7b0','#e9e4f5']},
+    {id:'noir',        name:'Noiré',       desc:'Ivory + midnight faux pearls',                   img:'assets/product-noir.jpg',       dots:['#f4efe6','#1d1b22']},
+    {id:'rosecrystal', name:'Rosé Crystal', desc:'Blush pearls + iridescent crystals',            img:'assets/style-rose.jpg',         dots:['#f2a7b0','#e9e4f5']},
+    {id:'noircoeur',   name:'Noiré Heart', desc:'Ivory + onyx pearls, heart charm',               img:'assets/style-noir.jpg',         dots:['#f4efe6','#1d1b22']},
     {id:'parisienne',  name:'Parisienne',  desc:'Ivory, blush + onyx with gold rondelles',        img:'assets/style-parisienne.jpg',   dots:['#f4efe6','#f2a7b0','#1d1b22']},
     {id:'saphir',      name:'Saphir',      desc:'Petite ivory pearls + sapphire accents',         img:'assets/style-saphir.jpg',       dots:['#f4efe6','#23307a']},
     {id:'bleu',        name:'Bleu',        desc:'Aqua, teal + sapphire pearls',                   img:'assets/style-bleu.jpg',         dots:['#7cc3d9','#16707a','#23307a']},
     {id:'ombre',       name:'Ombré',       desc:'Spring green to sapphire blue',                  img:'assets/style-ombre.jpg',        dots:['#c9e27a','#2f8f7f','#1f3f8f']},
     {id:'paon',        name:'Paon',        desc:'Ivory pearls, crystal + peacock teal',           img:'assets/style-paon.jpg',         dots:['#f4efe6','#16707a']},
     {id:'bijou',       name:'Bijou',       desc:'Blush + ivory pearls with jewel-drop charms',    img:'assets/style-bijou.jpg',        dots:['#f2a7b0','#f4efe6','#6f2a4a']},
-    {id:'custom',      name:'Custom',      desc:'Your own color story — describe it in your notes',    img:'assets/ig-07.jpg',              dots:['#e7b6a4','#c17c63','#211a18']}
+    {id:'custom',      name:'Your own design', desc:'Your own color story — describe it in your notes', img:'assets/ig-07.jpg',              dots:['#e7b6a4','#c17c63','#211a18']}
   ];
   var BIRTHSTONES = [
     ['January','Garnet','#8b1a2b'],['February','Amethyst','#8a4fb5'],['March','Aquamarine','#7fd3e0'],
@@ -998,8 +1014,10 @@
     // [color, relative size]
     var PATTERNS = {
       classic:    [['ivory',1]],
-      rose:       [['blush',1],['crystal',.78]],
-      noir:       [['ivory',1],['ivory',1],['ivory',1],['onyx',1]],
+      rose:       [['blush',1]],
+      rosecrystal:[['blush',1],['crystal',.78]],
+      noir:       [['ivory',1],['onyx',1]],
+      noircoeur:  [['ivory',1],['ivory',1],['ivory',1],['onyx',1]],
       parisienne: [['ivory',1],['gold',.45],['blush',1],['gold',.45],['ivory',1],['gold',.45],['onyx',1],['gold',.45]],
       saphir:     [['ivory',.82],['ivory',.82],['ivory',.82],['gold',.45],['navy',1],['gold',.45]],
       bleu:       [['aqua',1],['silver',.45],['aqua',1],['silver',.45],['navy',1],['silver',.45]],
@@ -1193,19 +1211,25 @@
 
   /* style grid */
   var grid = document.getElementById('style-grid');
-  STYLES.forEach(function(s){
+  function tile(id, name, img, extra){
     var b = document.createElement('button');
-    if (FEATURED.indexOf(s.id) < 0) b.hidden = true;
-    b.type = 'button'; b.className = 'style-chip'; b.dataset.style = s.id;
-    b.setAttribute('aria-label', s.name + ' — ' + s.desc);
-    b.title = s.name;
-    b.innerHTML = '<img src="' + s.img + '" alt="" loading="lazy">';
-    b.addEventListener('click', function(){ selectStyle(s.id); });
-    grid.appendChild(b);
-  });
+    b.type = 'button'; b.className = 'style-tile' + (extra || ''); b.dataset.style = id;
+    b.innerHTML = '<span class="st-img"><img src="' + img + '" alt="" loading="lazy"></span><span class="st-name">' + name + '</span>';
+    grid.appendChild(b); return b;
+  }
+  FEATURED.forEach(function(id){ var st = styleById(id); tile(id, st.name, st.img).addEventListener('click', function(){ selectStyle(id); }); });
+  var customTile = tile('__custom', 'Custom', 'assets/style-ombre.jpg', ' custom-tile');
+  customTile.querySelector('.st-name').innerHTML = 'Custom <span class="caret">▾</span>';
+  var customWrap = document.getElementById('custom-style-wrap'), customSel = document.getElementById('custom-style');
+  customSel.innerHTML = STYLES.filter(function(st){ return FEATURED.indexOf(st.id) < 0; }).map(function(st){
+    return '<option value="' + st.id + '">' + st.name + (st.id === 'custom' ? '' : ' — ' + st.desc) + '</option>'; }).join('');
+  customTile.addEventListener('click', function(){ selectStyle(customSel.value); customSel.focus(); });
+  customSel.addEventListener('change', function(){ selectStyle(customSel.value); });
   function selectStyle(id){
     var s = styleById(id); state.style = id;
-    grid.querySelectorAll('.style-chip').forEach(function(el){ el.classList.toggle('selected', el.dataset.style === id); if (el.dataset.style === id) el.hidden = false; });
+    var isCustom = FEATURED.indexOf(id) < 0;
+    grid.querySelectorAll('.style-tile').forEach(function(el){ el.classList.toggle('selected', isCustom ? el.dataset.style === '__custom' : el.dataset.style === id); });
+    customWrap.hidden = !isCustom; if (isCustom) customSel.value = id;
     document.getElementById('style-name').textContent = s.name + ' · ' + s.desc;
     var main = document.getElementById('main-photo');
     main.src = s.img; main.alt = s.name + ' pearl stretch pet necklace — ' + s.desc;
