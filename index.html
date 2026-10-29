@@ -393,6 +393,26 @@
   .custom-note strong{color:var(--ink);}
   .buzz-credit{text-align:center;margin-top:14px;font-size:.72rem;letter-spacing:.06em;opacity:.7;}
   .buzz-credit a{text-decoration:underline;text-underline-offset:3px;}
+  /* calm layout */
+  .step-num{display:none;}
+  .step{margin-bottom:26px;padding-bottom:22px;border-bottom:1px solid var(--line);}
+  .step-head{margin-bottom:12px;}
+  .step-head strong{color:#6c5c56;font-weight:400;letter-spacing:.02em;text-transform:none;}
+  .style-grid{display:flex !important;flex-wrap:wrap;gap:12px;}
+  .style-chip{width:58px;height:58px;padding:0 !important;border-radius:50%;overflow:hidden;border:1px solid var(--line) !important;box-shadow:none !important;}
+  .style-chip img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;transform:scale(1.2);}
+  .style-chip.selected{box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--ink) !important;}
+  .charm-options{flex-direction:row !important;flex-wrap:wrap;gap:8px !important;}
+  .charm-opt{padding:9px 14px !important;font-size:.85rem !important;}
+  .charm-opt input{position:absolute;opacity:0;width:0;height:0;}
+  .charm-opt:has(input:checked){background:var(--ink) !important;color:#fff;border-color:var(--ink) !important;}
+  .charm-opt:has(input:checked) em{color:#f3d7cc;}
+  .charm-peek{margin-top:12px;font-size:.82rem;}
+  .charm-peek summary{cursor:pointer;color:var(--rose-2);text-decoration:underline;text-underline-offset:3px;list-style:none;}
+  .charm-peek summary::-webkit-details-marker{display:none;}
+  .charm-gallery{max-width:360px;}
+  .charm-gallery.one{max-width:180px;}
+  .custom-note{background:none !important;border:none !important;padding:0 !important;font-size:.82rem !important;color:#6c5c56 !important;}
   .field-error{color:#b03a2e;font-size:.82rem;margin-top:8px;}
   .atc-row{display:flex;gap:14px;align-items:center;margin:6px 0 4px;}
   .atc-row .add-to-cart{flex:1;margin:0;}
@@ -460,7 +480,7 @@
     .product{grid-template-columns:1fr;gap:22px;}
     .gallery{position:static;}
     .builder{padding:26px 18px;}
-    .style-grid{grid-template-columns:repeat(3,1fr);}
+    .style-chip{width:52px;height:52px;}
     .ig-grid-12{grid-template-columns:repeat(3,1fr);}
     .contact-inner{grid-template-columns:1fr;gap:26px;}
     .contact-form{padding:22px 18px;}
@@ -548,7 +568,7 @@
       <div class="step">
         <div class="step-head"><span class="step-num">1</span><span class="field-label">Pearl style — <strong id="style-name">Classicé</strong></span></div>
         <div class="style-grid" id="style-grid"></div>
-        <p class="charm-hint">These are just a few favorites — any style can be customized. Add your wishes in the notes below.</p>
+        
       </div>
 
       <!-- step 2 -->
@@ -567,32 +587,32 @@
 
       <!-- step 3 -->
       <div class="step">
-        <div class="step-head"><span class="step-num">3</span><span class="field-label">Make it personal</span></div>
+        <div class="step-head"><span class="step-num">3</span><span class="field-label">Charm</span></div>
         <div class="charm-options" id="charm-options">
-          <label class="charm-opt"><input type="radio" name="charm" value="none" checked> <span>No charm</span></label>
-          <label class="charm-opt"><input type="radio" name="charm" value="birthstone"> <span>Birthstone crystal charm <em>+$8</em></span></label>
-          <label class="charm-opt"><input type="radio" name="charm" value="custom"> <span>Natural stone or enamel charm <em>+$8</em></span></label>
+          <label class="charm-opt"><input type="radio" name="charm" value="none" checked> <span>None</span></label>
+          <label class="charm-opt"><input type="radio" name="charm" value="birthstone"> <span>Birthstone <em>+$8</em></span></label>
+          <label class="charm-opt"><input type="radio" name="charm" value="custom"> <span>Stone or enamel <em>+$8</em></span></label>
         </div>
         <div class="charm-detail" id="birthstone-wrap">
           <label class="field-label" for="birthstone">Birth month</label>
           <select id="birthstone"></select>
-          <div class="birthstone-dots" id="birthstone-dots"></div>
-          <div class="charm-gallery one"><figure><img src="assets/charm-crystals.jpg" alt="Faceted crystal birthstone drop charms in twelve colors" loading="lazy" width="800" height="800"><figcaption>Faceted crystal birthstone drops</figcaption></figure></div>
+          <div id="birthstone-dots" hidden></div>
+          <details class="charm-peek"><summary>See the birthstone charms</summary><div class="charm-gallery one"><figure><img src="assets/charm-crystals.jpg" alt="Faceted crystal birthstone drop charms in twelve colors" loading="lazy" width="800" height="800"><figcaption>Faceted crystal birthstone drops</figcaption></figure></div></details>
         </div>
         <div class="charm-detail" id="custom-wrap">
-          <div class="charm-gallery">
+          <details class="charm-peek" open><summary>See the stone &amp; enamel charms</summary><div class="charm-gallery">
             <figure><img src="assets/charm-stones.jpg" alt="Natural stone teardrop charms — rose quartz, amethyst, aventurine, jasper and more" loading="lazy" width="800" height="800"><figcaption>Natural stone teardrops</figcaption></figure>
             <figure><img src="assets/charm-enamel.jpg" alt="Gold enamel charms — moon, star and lightning bolt in pink, navy, black and pearl white" loading="lazy" width="800" height="800"><figcaption>Enamel moon, star &amp; bolt</figcaption></figure>
-          </div>
-          <p class="charm-hint">Tell us which one you love in the notes below (e.g. “pink enamel moon” or “amethyst teardrop”).</p>
+          </div></details>
+          <p class="charm-hint">Note your favorite below — e.g. “pink enamel moon” or “amethyst teardrop.”</p>
         </div>
       </div>
 
       <!-- step 4 -->
       <div class="step" id="notes-step">
-        <div class="step-head"><span class="step-num">4</span><span class="field-label">Your notes</span></div>
+        <div class="step-head"><span class="step-num">4</span><span class="field-label">Notes</span></div>
         <div class="custom-note">
-          <strong>Think of these as a starting point.</strong> Every Très Perlé piece is made by hand, so we’re happy to mix colors, swap charms, or create something completely one-of-a-kind. Just share every detail you can — pearl colors, charm style, your pet’s name, anything special — so we can get it right the first time and start stringing right away.
+          These styles are just a starting point — every piece is handmade, so we’re happy to mix colors, swap charms, or create something one-of-a-kind. Share as many details as you can (colors, charm, your pet’s name) so we can get it just right the first time.
         </div>
         <textarea id="order-notes" rows="4" maxlength="200" placeholder="e.g. Blush + ivory pearls, gold spacers, pink enamel moon charm. For Stevie, my 9 lb mini dachshund."></textarea>
       </div>
@@ -898,15 +918,15 @@
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'style-chip'; b.dataset.style = s.id;
     b.setAttribute('aria-label', s.name + ' — ' + s.desc);
-    b.innerHTML = '<img src="' + s.img + '" alt="" loading="lazy"><span class="chip-name">' + s.name + '</span>' +
-      '<span class="chip-dots">' + s.dots.map(function(c){return '<i style="background:' + c + '"></i>';}).join('') + '</span>';
+    b.title = s.name;
+    b.innerHTML = '<img src="' + s.img + '" alt="" loading="lazy">';
     b.addEventListener('click', function(){ selectStyle(s.id); });
     grid.appendChild(b);
   });
   function selectStyle(id){
     var s = styleById(id); state.style = id;
     grid.querySelectorAll('.style-chip').forEach(function(el){ el.classList.toggle('selected', el.dataset.style === id); });
-    document.getElementById('style-name').textContent = s.name;
+    document.getElementById('style-name').textContent = s.name + ' · ' + s.desc;
     var main = document.getElementById('main-photo');
     main.src = s.img; main.alt = s.name + ' pearl stretch pet necklace — ' + s.desc;
     document.getElementById('main-caption').textContent = s.name + ' — ' + s.desc;
