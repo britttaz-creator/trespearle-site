@@ -53,6 +53,12 @@
     .story-hero{padding:64px 22px;}
     .story-hero h1{font-size:2.1rem;}
   }
+  .muse{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;margin:56px -80px 10px;}
+  .muse-photo{margin:0;}
+  .muse-photo img{width:100%;height:auto;display:block;border:1px solid var(--line);}
+  .muse-photo figcaption{font-size:.8rem;color:#6c5c56;text-align:center;margin-top:10px;letter-spacing:.03em;}
+  .muse-copy h2{margin:10px 0 14px;}
+  @media(max-width:900px){.muse{grid-template-columns:1fr;gap:24px;margin:48px 0 10px;}}
 </style>
 </head>
 <body>
@@ -71,9 +77,9 @@
 </header>
 
 <div class="story-hero">
-  <span class="eyebrow" style="color:#fff;">For the Love of Dogs</span>
+  <span class="eyebrow" style="color:#fff;">For the Love of Pets</span>
   <h1>Because your best friend deserves a little indulgence.</h1>
-  <p>Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste.</p>
+  <p>Chic, playful pearl stretch necklaces thoughtfully made for dogs, cats &amp; pets with impeccable taste.</p>
 </div>
 
 <section>
@@ -86,6 +92,20 @@
 
     <p>Each necklace is hand-strung on flexible elastic and designed to slip gently over your dog's head, no clasps required. Whether it's Classicé's timeless ivory pearls, Rosé's blush warmth, or Noiré's midnight contrast, every style is made to be noticed — at the park, in photos, or simply curled up at home.</p>
     <p>Très Perlé is a small, dog-loving brand, and every order is made with that same personal care — from the way it's strung to the way it's packaged and shipped to your door.</p>
+
+    <div class="muse">
+      <figure class="muse-photo">
+        <img src="assets/guppy-and-stevie.jpg" alt="Guppy, a chocolate mini dachshund, and her bestie Stevie, a black and tan mini dachshund, both wearing Très Perlé pearl necklaces with heart charms" width="900" height="993" loading="lazy">
+        <figcaption>Guppy (left) and her bestie Stevie, in matching pearls</figcaption>
+      </figure>
+      <div class="muse-copy">
+        <span class="eyebrow">Meet our muse</span>
+        <h2>Hi, I'm Guppy.</h2>
+        <p>Guppy is a chocolate mini dachshund who turned one in April — and she's the face of Très Perlé. That's her modeling every necklace in our shop.</p>
+        <p>She comes from a very full (and very loving) house: her big brother PJ, a five-year-old Vizsla who is beyond sweet with her; her bestie Stevie, a little black mini dachshund; and her four boy weenie brothers.</p>
+        <p>Every style is pet-tested and Guppy-approved before it ever reaches yours.</p>
+      </div>
+    </div>
 
     <div class="story-cta">
       <a class="btn" href="index.html#shop">Shop the Collection</a>

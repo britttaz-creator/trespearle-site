@@ -353,6 +353,25 @@
   .gallery{position:sticky;top:96px;}
   .gallery-main{background:var(--white);border:1px solid var(--line);aspect-ratio:1/1;overflow:hidden;}
   .gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .25s;}
+  .view-tabs{display:flex;justify-content:center;gap:24px;margin-bottom:12px;}
+  .view-tab{background:none;border:none;border-bottom:1px solid transparent;padding:4px 2px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#8a7a72;}
+  .view-tab.active{color:var(--ink);border-bottom-color:var(--ink);}
+  .gallery-main{position:relative;}
+  .model-view{position:absolute;inset:0;}
+  .model-view[hidden]{display:none;}
+  .model-view img{width:100%;height:100%;object-fit:cover;display:block;}
+  #necklace-svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;}
+  #necklace-svg.draggable{cursor:grab;}
+  #necklace-svg #necklace-g{transition:opacity .2s;}
+  .tryon{text-align:center;margin-top:14px;}
+  .tryon-btn{display:inline-block;border:1px solid var(--ink);padding:10px 20px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;}
+  .tryon-btn:hover{background:var(--ink);color:#fff;}
+  .tryon-btn input{display:none;}
+  .tryon-controls{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:.78rem;color:#6c5c56;}
+  .tryon-controls[hidden]{display:none;}
+  .tryon-controls label{display:flex;align-items:center;gap:8px;}
+  .tryon-controls input[type=range]{width:110px;accent-color:var(--rose-2);}
+  .tryon-note{font-size:.72rem;color:#9a8a82;margin:8px 0 0;}
   .gallery-caption{margin-top:12px;font-size:.85rem;color:#6c5c56;text-align:center;letter-spacing:.04em;}
   .builder{background:var(--white);border:1px solid var(--line);padding:36px 36px 30px;}
   .builder h3{font-size:1.6rem;margin-bottom:6px;}
@@ -555,8 +574,28 @@
   <div class="product">
     <!-- gallery -->
     <div class="gallery">
-      <div class="gallery-main"><img id="main-photo" src="assets/product-classic.jpg" alt="Classicé pearl stretch pet necklace" width="900" height="900"></div>
-      <div class="gallery-caption" id="main-caption">Classicé — ivory faux pearls</div>
+      <div class="view-tabs" role="tablist">
+        <button type="button" class="view-tab active" data-view="model" role="tab" aria-selected="true">On a pet</button>
+        <button type="button" class="view-tab" data-view="product" role="tab" aria-selected="false">The necklace</button>
+      </div>
+      <div class="gallery-main">
+        <div class="model-view" id="model-view">
+          <img id="model-photo" src="assets/guppy-model.jpg" alt="Guppy, a one-year-old mini dachshund, modeling the selected necklace" width="900" height="900">
+          <svg id="necklace-svg" viewBox="130 0 900 900" aria-hidden="true"></svg>
+        </div>
+        <img id="main-photo" src="assets/product-classic.jpg" alt="Classicé pearl stretch pet necklace" width="900" height="900" hidden>
+      </div>
+      <div class="gallery-caption" id="model-caption">Modeled by Guppy, our one-year-old mini dachshund</div>
+      <div class="gallery-caption" id="main-caption" hidden>Classicé — ivory faux pearls</div>
+      <div class="tryon">
+        <label class="tryon-btn">Try it on your pet<input type="file" id="tryon-file" accept="image/*"></label>
+        <div class="tryon-controls" id="tryon-controls" hidden>
+          <label>Size <input type="range" id="tryon-size" min="0.4" max="4" step="0.05" value="1"></label>
+          <label>Angle <input type="range" id="tryon-rotate" min="-45" max="45" step="1" value="0"></label>
+          <button type="button" class="link-btn" id="tryon-reset">Back to Guppy</button>
+        </div>
+        <p class="tryon-note">Your photo stays private on your device — it's never uploaded.</p>
+      </div>
     </div>
 
     <!-- builder -->
@@ -907,6 +946,161 @@
     ['July','Ruby','#c4102e'],['August','Peridot','#9ccc3a'],['September','Sapphire','#1f47b0'],
     ['October','Rose','#f2a7c0'],['November','Topaz','#f0a52b'],['December','Blue Zircon','#1aa3b8']
   ];
+  window.TP_BIRTHSTONES = {}; BIRTHSTONES.forEach(function(b){ window.TP_BIRTHSTONES[b[0]] = b[2]; });
+
+  /* =========================================================
+     LIVE PREVIEW — draws the chosen necklace on Guppy (or the
+     customer's own pet photo, which never leaves their device)
+     ========================================================= */
+  var Preview = (function(){
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.getElementById('necklace-svg');
+    var photo = document.getElementById('model-photo');
+    var GUPPY = 'assets/guppy-model.jpg';
+    // neckline traced on Guppy's photo (1086 x 1086 frame)
+    var PTS = [[586.7,243.3],[590,266.7],[610,293],[636.7,323.3],[673.3,348.3],[713,370],[756.7,375],[780,356.7]];
+    var C = {
+      ivory:'#f4eee3', blush:'#f2a2a9', crystal:'#eef3f8', onyx:'#18171c', navy:'#26388c',
+      aqua:'#68c4d6', teal:'#0f6c7a', gold:'#d3a24a', silver:'#d6dae0', hematite:'#7b7e86'
+    };
+    // [color, relative size]
+    var PATTERNS = {
+      classic:    [['ivory',1]],
+      rose:       [['blush',1],['crystal',.78]],
+      noir:       [['ivory',1],['ivory',1],['ivory',1],['onyx',1]],
+      parisienne: [['ivory',1],['gold',.45],['blush',1],['gold',.45],['ivory',1],['gold',.45],['onyx',1],['gold',.45]],
+      saphir:     [['ivory',.82],['ivory',.82],['ivory',.82],['gold',.45],['navy',1],['gold',.45]],
+      bleu:       [['aqua',1],['silver',.45],['aqua',1],['silver',.45],['navy',1],['silver',.45]],
+      ombre:      'ombre',
+      paon:       [['ivory',1],['gold',.45],['crystal',.85],['gold',.45],['ivory',1],['gold',.45],['teal',1],['gold',.45]],
+      bijou:      [['ivory',1],['hematite',.6],['crystal',.8],['hematite',.6],['blush',1],['hematite',.6]],
+      custom:     [['ivory',1],['blush',1],['crystal',.8],['onyx',1]]
+    };
+    var OMBRE = ['#e2ec98','#9fd27a','#4fa86a','#86c6dc','#3f62b3','#13687a'];
+
+    function cr(p){ // Catmull-Rom densify
+      var out = [], P = [p[0]].concat(p, [p[p.length-1]]);
+      for (var i = 1; i < P.length - 2; i++){
+        for (var k = 0; k < 24; k++){
+          var t = k / 24, t2 = t*t, t3 = t2*t, a = P[i-1], b = P[i], c = P[i+1], d = P[i+2];
+          out.push([0,1].map(function(j){ return 0.5*((2*b[j]) + (-a[j]+c[j])*t + (2*a[j]-5*b[j]+4*c[j]-d[j])*t2 + (-a[j]+3*b[j]-3*c[j]+d[j])*t3); }));
+        }
+      }
+      out.push(p[p.length-1]); return out;
+    }
+    var CURVE = cr(PTS), LEN = [0];
+    for (var i = 1; i < CURVE.length; i++) LEN.push(LEN[i-1] + Math.hypot(CURVE[i][0]-CURVE[i-1][0], CURVE[i][1]-CURVE[i-1][1]));
+    var TOTAL = LEN[LEN.length-1];
+    function at(d){ for (var i = 1; i < LEN.length; i++) if (LEN[i] >= d){ var f = (d-LEN[i-1])/(LEN[i]-LEN[i-1]); return [CURVE[i-1][0]+(CURVE[i][0]-CURVE[i-1][0])*f, CURVE[i-1][1]+(CURVE[i][1]-CURVE[i-1][1])*f]; } return CURVE[CURVE.length-1]; }
+    function mix(a, b, f){ var x = parseInt(a.slice(1),16), y = parseInt(b.slice(1),16);
+      var r = Math.round(((x>>16)&255)*(1-f) + ((y>>16)&255)*f), g = Math.round(((x>>8)&255)*(1-f) + ((y>>8)&255)*f), bl = Math.round((x&255)*(1-f) + (y&255)*f);
+      return '#' + ((1<<24) + (r<<16) + (g<<8) + bl).toString(16).slice(1); }
+    function ombreAt(f){ var s = f * (OMBRE.length-1), i = Math.min(OMBRE.length-2, Math.floor(s)); return mix(OMBRE[i], OMBRE[i+1], s-i); }
+    function el(tag, attrs, parent){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+
+    var gradCache = {}, defs = el('defs', {}, svg);
+    var sh = el('filter', {id:'bead-shadow', x:'-50%', y:'-50%', width:'200%', height:'200%'}, defs);
+    el('feDropShadow', {dx:'0.8', dy:'1.6', stdDeviation:'1.4', 'flood-color':'#1a0f0a', 'flood-opacity':'.45'}, sh);
+    function grad(color, crystal){
+      var id = 'g' + color.slice(1) + (crystal ? 'c' : '');
+      if (gradCache[id]) return id;
+      var g = el('radialGradient', {id:id, cx:'35%', cy:'30%', r:'75%'}, defs);
+      if (crystal){
+        el('stop', {offset:'0%', 'stop-color':'#ffffff'}, g);
+        el('stop', {offset:'35%', 'stop-color':'#f6e9ff'}, g);
+        el('stop', {offset:'65%', 'stop-color':'#cfe9f3'}, g);
+        el('stop', {offset:'100%', 'stop-color':'#9fb0c4'}, g);
+      } else {
+        el('stop', {offset:'0%', 'stop-color':mix(color,'#ffffff',.75)}, g);
+        el('stop', {offset:'38%', 'stop-color':color}, g);
+        el('stop', {offset:'100%', 'stop-color':mix(color,'#000000',.45)}, g);
+      }
+      gradCache[id] = 1; return id;
+    }
+
+    var group = el('g', {id:'necklace-g'}, svg);
+    var place = {x:0, y:0, s:1, r:0}, CX = 680, CY = 320;
+    function applyPlace(){ group.setAttribute('transform', 'translate(' + place.x + ' ' + place.y + ') rotate(' + place.r + ' ' + CX + ' ' + CY + ') translate(' + CX + ' ' + CY + ') scale(' + place.s + ') translate(' + (-CX) + ' ' + (-CY) + ')'); }
+
+    function draw(styleId, charm, month){
+      while (group.firstChild) group.removeChild(group.firstChild);
+      var pat = PATTERNS[styleId] || PATTERNS.classic, BASE = 17, d = 0, k = 0, beads = [];
+      while (d < TOTAL){
+        var f = d / TOTAL, persp = 0.82 + 0.26 * Math.sin(Math.PI * Math.min(1, f * 1.15));
+        var spec = pat === 'ombre' ? [null, 1] : pat[k % pat.length];
+        var size = BASE * persp * spec[1];
+        d += size / 2;
+        if (d > TOTAL) break;
+        beads.push({p:at(d), r:size/2, color: pat === 'ombre' ? ombreAt(f) : C[spec[0]], key: pat === 'ombre' ? '' : spec[0]});
+        d += size / 2 + 0.6; k++;
+      }
+      beads.forEach(function(b){
+        var crystal = b.key === 'crystal', small = b.key === 'gold' || b.key === 'silver' || b.key === 'hematite';
+        if (small){
+          el('ellipse', {cx:b.p[0], cy:b.p[1], rx:b.r*.75, ry:b.r*1.25, fill:'url(#' + grad(b.color) + ')', filter:'url(#bead-shadow)'}, group);
+        } else {
+          el('circle', {cx:b.p[0], cy:b.p[1], r:b.r, fill:'url(#' + grad(b.color, crystal) + ')', filter:'url(#bead-shadow)'}, group);
+          el('ellipse', {cx:b.p[0] - b.r*.32, cy:b.p[1] - b.r*.38, rx:b.r*.32, ry:b.r*.2, fill:'#fff', opacity: crystal ? .9 : .55}, group);
+          if (crystal) el('path', {d:'M' + (b.p[0]-b.r*.6) + ' ' + b.p[1] + 'L' + b.p[0] + ' ' + (b.p[1]-b.r*.6) + 'L' + (b.p[0]+b.r*.6) + ' ' + b.p[1] + 'L' + b.p[0] + ' ' + (b.p[1]+b.r*.6) + 'Z', fill:'none', stroke:'#ffffff', 'stroke-opacity':.55, 'stroke-width':.8}, group);
+        }
+      });
+      if (charm && charm !== 'none'){
+        var hp = at(TOTAL * 0.40), cx = hp[0], cy = hp[1];
+        el('rect', {x:cx-3.5, y:cy+3, width:7, height:9, rx:2, fill:'url(#' + grad(C.gold) + ')'}, group);
+        if (charm === 'birthstone'){
+          var mc = (window.TP_BIRTHSTONES && month) ? window.TP_BIRTHSTONES[month] : '#7fd3e0';
+          var y0 = cy + 13;
+          el('path', {d:'M' + cx + ' ' + (y0-1) + ' C ' + (cx+10) + ' ' + (y0+9) + ' ' + (cx+10) + ' ' + (y0+22) + ' ' + cx + ' ' + (y0+23) + ' C ' + (cx-10) + ' ' + (y0+22) + ' ' + (cx-10) + ' ' + (y0+9) + ' ' + cx + ' ' + (y0-1) + 'Z', fill:'url(#' + grad(C.gold) + ')', filter:'url(#bead-shadow)'}, group);
+          el('path', {d:'M' + cx + ' ' + (y0+2) + ' C ' + (cx+7.5) + ' ' + (y0+10) + ' ' + (cx+7.5) + ' ' + (y0+20) + ' ' + cx + ' ' + (y0+20.5) + ' C ' + (cx-7.5) + ' ' + (y0+20) + ' ' + (cx-7.5) + ' ' + (y0+10) + ' ' + cx + ' ' + (y0+2) + 'Z', fill:'url(#' + grad(mc) + ')'}, group);
+          el('ellipse', {cx:cx-2.5, cy:y0+10, rx:2, ry:3.5, fill:'#fff', opacity:.7}, group);
+        } else {
+          var y1 = cy + 24;
+          el('circle', {cx:cx, cy:y1, r:12, fill:'url(#' + grad(C.gold) + ')', filter:'url(#bead-shadow)'}, group);
+          el('circle', {cx:cx, cy:y1, r:9.5, fill:'url(#' + grad('#f2a7b0') + ')'}, group);
+          el('path', {d:'M' + (cx+2) + ' ' + (y1-6) + ' a6.5 6.5 0 1 0 0 12 a5 5 0 1 1 0 -12z', fill:'#e7c26c'}, group);
+        }
+      }
+    }
+
+    /* view switching + try-on */
+    var mode = 'guppy';
+    var controls = document.getElementById('tryon-controls');
+    function setMode(m, src){
+      mode = m;
+      photo.src = m === 'guppy' ? GUPPY : src;
+      photo.alt = m === 'guppy' ? 'Guppy, a one-year-old mini dachshund, modeling the selected necklace' : 'Your pet wearing the selected necklace';
+      controls.hidden = m === 'guppy';
+      document.getElementById('model-caption').textContent = m === 'guppy' ? 'Modeled by Guppy, our one-year-old mini dachshund' : 'Drag the necklace into place, then adjust the size';
+      place = m === 'guppy' ? {x:0, y:0, s:1, r:0} : {x:-140, y:180, s:1.6, r:0};
+      document.getElementById('tryon-size').value = place.s; document.getElementById('tryon-rotate').value = 0;
+      svg.classList.toggle('draggable', m !== 'guppy');
+      applyPlace();
+    }
+    document.getElementById('tryon-file').addEventListener('change', function(e){
+      var f = e.target.files && e.target.files[0]; if (!f) return;
+      var url = URL.createObjectURL(f);
+      setMode('pet', url); showView('model');
+    });
+    document.getElementById('tryon-reset').addEventListener('click', function(){ document.getElementById('tryon-file').value = ''; setMode('guppy'); });
+    document.getElementById('tryon-size').addEventListener('input', function(e){ place.s = parseFloat(e.target.value); applyPlace(); });
+    document.getElementById('tryon-rotate').addEventListener('input', function(e){ place.r = parseFloat(e.target.value); applyPlace(); });
+    var drag = null;
+    svg.addEventListener('pointerdown', function(e){ if (mode === 'guppy') return; drag = {x:e.clientX, y:e.clientY, px:place.x, py:place.y}; svg.setPointerCapture(e.pointerId); e.preventDefault(); });
+    svg.addEventListener('pointermove', function(e){ if (!drag) return; var k = 900 / svg.getBoundingClientRect().width; place.x = drag.px + (e.clientX - drag.x) * k; place.y = drag.py + (e.clientY - drag.y) * k; applyPlace(); });
+    ['pointerup','pointercancel'].forEach(function(t){ svg.addEventListener(t, function(){ drag = null; }); });
+
+    function showView(v){
+      document.querySelectorAll('.view-tab').forEach(function(b){ b.classList.toggle('active', b.dataset.view === v); b.setAttribute('aria-selected', b.dataset.view === v); });
+      document.getElementById('model-view').hidden = v !== 'model';
+      document.getElementById('main-photo').hidden = v !== 'product';
+      document.getElementById('model-caption').hidden = v !== 'model';
+      document.getElementById('main-caption').hidden = v !== 'product';
+    }
+    document.querySelectorAll('.view-tab').forEach(function(b){ b.addEventListener('click', function(){ showView(b.dataset.view); }); });
+    applyPlace();
+    return {draw:draw, showView:showView};
+  })();
+
   var BASE_PRICE = 22, CHARM_PRICE = 8, FREE_SHIP = 100, FLAT_SHIP = 9.95;
 
   var state = {style:'classic', size:'XS', delta:0, charm:'none', month:'', note:'', qty:1};
@@ -956,7 +1150,7 @@
     btn.addEventListener('click', function(){ monthSel.value = btn.dataset.month; monthSel.dispatchEvent(new Event('change')); });
   });
   monthSel.addEventListener('change', function(){
-    state.month = monthSel.value;
+    state.month = monthSel.value; updatePrice();
     document.querySelectorAll('#birthstone-dots button').forEach(function(b){ b.classList.toggle('selected', b.dataset.month === state.month); });
   });
   function setCharm(v){
@@ -977,6 +1171,7 @@
   document.getElementById('qty-plus').addEventListener('click', function(){ state.qty++; qtyVal.textContent = state.qty; });
   function unitPrice(){ return BASE_PRICE + state.delta + (state.charm !== 'none' ? CHARM_PRICE : 0); }
   function updatePrice(){
+    try { Preview.draw(state.style, state.charm, state.month); } catch(e){}
     var p = '$' + unitPrice().toFixed(2);
     document.getElementById('unit-total').textContent = p;
     document.getElementById('sticky-total').textContent = p;
