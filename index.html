@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Très Perlé | Luxury Pearl Stretch Dog Necklaces</title>
-<meta name="description" content="Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste. Five easy sizes, three signature styles, complimentary shipping over $100.">
+<meta name="description" content="Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste. Five easy sizes, signature pearl styles, birthstone charms, complimentary shipping over $100.">
 <link rel="canonical" href="https://trespearle.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23c17c63'/%3E%3Ccircle cx='20' cy='38' r='7' fill='%23fffdf9'/%3E%3Ccircle cx='32' cy='40' r='8' fill='%23fffdf9'/%3E%3Ccircle cx='44' cy='38' r='7' fill='%23fffdf9'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
@@ -32,7 +32,7 @@
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Très Perlé Pearl Stretch Dog Necklace",
-  "description": "Chic pearl stretch necklace for dogs, available in three signature styles and five sizes, with an optional charm or accent pearl add-on.",
+  "description": "Chic pearl stretch necklace for dogs, available in signature pearl styles and five sizes, with optional birthstone or custom charms.",
   "brand": {"@type": "Brand", "name": "Très Perlé"},
   "image": [
     "https://trespearle.com/assets/product-classic.jpg",
@@ -347,6 +347,117 @@
   }
   .sticky-atc .sticky-price{font-family:Georgia,serif;font-size:1.1rem;}
   .sticky-atc button{background:var(--ink);color:#fff;border:none;padding:13px 22px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;}
+
+  /* ===== single product builder ===== */
+  .shop{background:var(--cream);}
+  .shop-sub{max-width:520px;margin:14px auto 0;color:#4a3d38;line-height:1.7;}
+  .product{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1150px;margin:0 auto;align-items:start;}
+  .gallery{position:sticky;top:96px;}
+  .gallery-main{background:var(--white);border:1px solid var(--line);aspect-ratio:1/1;overflow:hidden;}
+  .gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .25s;}
+  .gallery-caption{margin-top:12px;font-size:.85rem;color:#6c5c56;text-align:center;letter-spacing:.04em;}
+  .builder{background:var(--white);border:1px solid var(--line);padding:36px 36px 30px;}
+  .builder h3{font-size:1.6rem;margin-bottom:6px;}
+  .price-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:26px;}
+  .price-line .total{font-family:Georgia,serif;font-size:1.7rem;}
+  .from-note{font-size:.78rem;color:#8a7a72;}
+  .step{margin-bottom:28px;}
+  .step-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .step-head .field-label{margin:0;}
+  .step-head strong{color:var(--rose-2);font-weight:600;letter-spacing:.06em;}
+  .step-num{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .optional{text-transform:none;letter-spacing:0;color:#9a8a82;font-size:.78rem;}
+  .style-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .style-chip{background:var(--white);border:1px solid var(--line);padding:0 0 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;transition:border-color .2s,box-shadow .2s;}
+  .style-chip img{width:100%;aspect-ratio:1/1;object-fit:cover;}
+  .style-chip .chip-name{font-family:Georgia,serif;font-size:.9rem;}
+  .style-chip .chip-dots{display:flex;gap:3px;}
+  .style-chip .chip-dots i{width:9px;height:9px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:block;}
+  .style-chip:hover{border-color:var(--rose-1);}
+  .style-chip.selected{border-color:var(--rose-2);box-shadow:0 0 0 2px var(--rose-2);}
+  .charm-options{display:flex;flex-direction:column;gap:8px;}
+  .charm-opt{display:flex;align-items:center;gap:10px;border:1px solid var(--line);padding:11px 14px;font-size:.9rem;cursor:pointer;}
+  .charm-opt em{font-style:normal;color:var(--rose-2);}
+  .charm-opt:has(input:checked){border-color:var(--ink);background:var(--cream);}
+  .charm-detail{display:none;margin-top:14px;}
+  .charm-detail.show{display:block;}
+  .charm-detail select, .upsell select{width:100%;border:1px solid var(--line);padding:12px 14px;font-size:.9rem;background:var(--cream);font-family:inherit;}
+  .birthstone-dots{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .birthstone-dots button{width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0;}
+  .birthstone-dots button.selected{box-shadow:0 0 0 2px var(--ink);}
+  .field-error{color:#b03a2e;font-size:.82rem;margin-top:8px;}
+  .atc-row{display:flex;gap:14px;align-items:center;margin:6px 0 4px;}
+  .atc-row .add-to-cart{flex:1;margin:0;}
+  .ig-grid-12{grid-template-columns:repeat(4,1fr);max-width:1100px;}
+
+  /* ===== funnel modal ===== */
+  .upsell-overlay{position:fixed;inset:0;background:rgba(20,15,13,.45);z-index:80;display:none;}
+  .upsell-overlay.show{display:block;}
+  .upsell{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;pointer-events:none;
+    width:min(460px,92vw);background:var(--white);z-index:90;padding:30px 28px 26px;transition:opacity .2s,transform .2s;max-height:92vh;overflow:auto;}
+  .upsell.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%);}
+  .upsell-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.5rem;}
+  .upsell-added{display:flex;gap:12px;align-items:center;font-size:.84rem;color:#4a3d38;background:var(--cream);padding:10px;margin-bottom:20px;line-height:1.5;}
+  .upsell-added img{width:56px;height:56px;object-fit:cover;flex-shrink:0;}
+  .upsell h3{font-size:1.45rem;margin:8px 0 8px;}
+  .upsell p{font-size:.9rem;color:#4a3d38;line-height:1.6;margin:0 0 16px;}
+  .upsell-actions{display:flex;flex-direction:column;gap:8px;margin-top:18px;}
+  .upsell-actions .btn{align-self:stretch;text-align:center;}
+  .upsell-actions .btn:disabled{opacity:.45;cursor:not-allowed;}
+  .link-btn{background:none;border:none;color:#6c5c56;text-decoration:underline;font-size:.82rem;padding:6px;}
+
+  /* ===== cart drawer upgrades ===== */
+  .cart-item{align-items:flex-start;}
+  .ci-img{width:60px;height:60px;object-fit:cover;flex-shrink:0;}
+  .ci-body{flex:1;}
+  .ci-price{font-size:.92rem;white-space:nowrap;}
+  .ci-qty{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:.85rem;}
+  .ci-qty button[data-act=minus], .ci-qty button[data-act=plus]{width:26px;height:26px;border:1px solid var(--line);background:#fff;}
+  .ci-qty .remove{margin:0 0 0 8px;}
+  .ci-charm{background:none;border:none;color:var(--rose-2);font-size:.78rem;padding:6px 0 0;text-align:left;}
+  .empty-cart a{color:var(--rose-2);text-decoration:underline;display:inline-block;margin-top:10px;}
+  .ship-progress{height:6px;background:var(--cream-2);border-radius:6px;overflow:hidden;margin-bottom:8px;}
+  .ship-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--rose-1),var(--rose-2));transition:width .3s;}
+  .nudge-btn{background:var(--cream);border:1px dashed var(--rose-2);color:var(--ink);font-size:.78rem;padding:9px 10px;width:100%;margin:2px 0 14px;}
+  .gift{font-size:.85rem;margin:6px 0 14px;}
+  .gift label{display:flex;gap:8px;align-items:center;cursor:pointer;}
+  #gift-wrap{display:none;margin-top:8px;}
+  #gift-wrap.show{display:block;}
+  .pay-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+  /* ===== thank you ===== */
+  .thank-you{display:none;background:var(--ink);color:#fff;text-align:center;padding:22px 20px;font-size:.95rem;}
+  .thank-you.show{display:block;}
+
+  /* ===== contact ===== */
+  .contact{background:linear-gradient(155deg,var(--rose-1),var(--rose-2));color:#fff;}
+  .contact-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;max-width:1050px;margin:0 auto;align-items:center;}
+  .contact-copy .eyebrow{color:#fff;}
+  .contact-copy h2{font-size:2.3rem;margin:12px 0;text-shadow:0 1px 6px rgba(20,14,12,.25);}
+  .contact-copy p{line-height:1.7;opacity:.95;max-width:38ch;}
+  .contact-form{background:var(--white);color:var(--ink);padding:30px;display:flex;flex-direction:column;gap:14px;}
+  .contact-form label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#6c5c56;display:flex;flex-direction:column;gap:6px;}
+  .contact-form input[type=text], .contact-form input[type=email], .contact-form textarea{width:100%;border:1px solid var(--line);padding:12px 14px;font-family:inherit;font-size:.92rem;background:var(--cream);text-transform:none;letter-spacing:0;color:var(--ink);}
+  .contact-form .cf-check{flex-direction:row;align-items:center;gap:10px;text-transform:none;letter-spacing:0;font-size:.88rem;color:#4a3d38;}
+  .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .contact-form .btn{align-self:stretch;text-align:center;}
+  .contact-form .btn:disabled{opacity:.6;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+  .cf-status{font-size:.88rem;min-height:1.2em;}
+  .cf-status.ok{color:#2e7d4f;}
+  .cf-status.err{color:#b03a2e;}
+  .cf-status a{text-decoration:underline;}
+
+  @media(max-width:860px){
+    .product{grid-template-columns:1fr;gap:22px;}
+    .gallery{position:static;}
+    .builder{padding:26px 18px;}
+    .style-grid{grid-template-columns:repeat(3,1fr);}
+    .ig-grid-12{grid-template-columns:repeat(3,1fr);}
+    .contact-inner{grid-template-columns:1fr;gap:26px;}
+    .contact-form{padding:22px 18px;}
+    .cf-row{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
@@ -354,6 +465,7 @@
 <div class="floating-mascots" id="floating-mascots"></div>
 
 <div class="announce">Complimentary shipping on orders $100+</div>
+<div class="thank-you" id="thank-you">Thank you for your order! 🤍 We'll start stringing your pearls and email you when they ship.</div>
 
 <header>
   <button class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</button>
@@ -364,6 +476,7 @@
     <a href="our-story.html">Our Story</a>
     <a href="faq.html">FAQ</a>
     <a href="#instagram">Instagram</a>
+    <a href="#contact">Contact</a>
   </nav>
   <div class="header-icons">
     <button class="icon-btn" id="cart-btn" aria-label="Open cart">&#128092;<span id="cart-count">0</span></button>
@@ -376,7 +489,7 @@
     <h1>A little luxury for your best friend.</h1>
     <p>Chic, playful pearl stretch necklaces thoughtfully made for pups with impeccable taste.</p>
     <div class="hero-ctas">
-      <a class="btn" href="#shop">Explore the Collection</a>
+      <a class="btn" href="#shop">Design Their Necklace</a>
       <a class="btn btn-outline-light" href="size-guide.html">Find Their Size</a>
     </div>
   </div>
@@ -404,115 +517,103 @@
   </div>
 </section>
 
-<section class="signatures" id="shop">
+<section class="shop" id="shop">
   <div class="section-head">
-    <span class="eyebrow">The Signatures</span>
-    <h2>Made to slip on. Made to stand out.</h2>
+    <span class="eyebrow">Design Their Necklace</span>
+    <h2>One necklace. Made just for them.</h2>
+    <p class="shop-sub">Pick a pearl style, choose their size, and make it personal with a charm. Every piece is hand-strung to order.</p>
   </div>
 
-  <div class="swatches" id="swatches">
-    <div class="swatch-card" data-color="classic">
-      <img src="assets/product-classic.jpg" alt="Classicé pearl stretch dog necklace - ivory faux pearls" width="600" height="600" loading="lazy">
-      <div class="swatch-info">
-        <h3>Classicé</h3>
-        <p>Pearl Stretch Dog Necklace — ivory faux pearls</p>
-        <div class="price">From $22</div>
-      </div>
-    </div>
-    <div class="swatch-card" data-color="rose">
-      <img src="assets/product-rose.jpg" alt="Rosé pearl stretch dog necklace - blush faux pearls" width="600" height="600" loading="lazy">
-      <div class="swatch-info">
-        <h3>Rosé</h3>
-        <p>Pearl Stretch Dog Necklace — blush faux pearls</p>
-        <div class="price">From $22</div>
-      </div>
-    </div>
-    <div class="swatch-card" data-color="noir">
-      <img src="assets/product-noir.jpg" alt="Noiré pearl stretch dog necklace - ivory and midnight faux pearls" width="600" height="600" loading="lazy">
-      <div class="swatch-info">
-        <h3>Noiré</h3>
-        <p>Pearl Stretch Dog Necklace — ivory + midnight faux pearls</p>
-        <div class="price">From $22</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="configurator">
-    <h3>Build Their Necklace</h3>
-    <div class="selected-name" id="selected-name">Classicé — Pearl Stretch Dog Necklace</div>
-
-    <div class="field-group">
-      <span class="field-label">Size</span>
-      <div class="size-pills" id="size-pills">
-        <button class="pill" data-size="XS" data-delta="0" data-range="7–9&quot;">XS</button>
-        <button class="pill" data-size="S" data-delta="0" data-range="9–11&quot;">S</button>
-        <button class="pill" data-size="M" data-delta="2" data-range="11–14&quot;">M</button>
-        <button class="pill" data-size="L" data-delta="4" data-range="14–18&quot;">L</button>
-        <button class="pill" data-size="XL" data-delta="6" data-range="18–22&quot;">XL</button>
-      </div>
-      <div class="size-help" id="size-help"></div>
-      <div class="size-between">Between sizes? Choose the larger size. <a href="size-guide.html">Not sure? See how to measure →</a></div>
+  <div class="product">
+    <!-- gallery -->
+    <div class="gallery">
+      <div class="gallery-main"><img id="main-photo" src="assets/product-classic.jpg" alt="Classicé pearl stretch dog necklace" width="900" height="900"></div>
+      <div class="gallery-caption" id="main-caption">Classicé — ivory faux pearls</div>
     </div>
 
-    <div class="field-group">
-      <label class="charm-toggle">
-        <input type="checkbox" id="charm-toggle">
-        <span>Add a charm or accent pearl (+$8)</span>
-      </label>
-      <div id="charm-note-wrap">
-        <label for="charm-note" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Describe the charm or accent pearl you'd like</label>
-        <textarea id="charm-note" rows="2" placeholder="Tell us what you'd like — a gem, a symbol, an initial, a birthstone, etc. We'll confirm the exact style with you after checkout."></textarea>
-        <div class="charm-gallery">
-          <img src="assets/charm-gems.jpg" alt="Example gem-style charm colors available as add-ons" loading="lazy" width="900" height="1124">
-          <img src="assets/charm-symbols.jpg" alt="Example symbol and initial charm styles available as add-ons" loading="lazy" width="900" height="1124">
+    <!-- builder -->
+    <div class="builder" id="builder">
+      <h3>Très Perlé Pearl Stretch Necklace</h3>
+      <div class="price-line"><span class="total" id="unit-total">$22.00</span> <span class="from-note">Made to order · ships in 10–14 business days</span></div>
+
+      <!-- step 1 -->
+      <div class="step">
+        <div class="step-head"><span class="step-num">1</span><span class="field-label">Pearl style — <strong id="style-name">Classicé</strong></span></div>
+        <div class="style-grid" id="style-grid"></div>
+      </div>
+
+      <!-- step 2 -->
+      <div class="step">
+        <div class="step-head"><span class="step-num">2</span><span class="field-label">Size</span></div>
+        <div class="size-pills" id="size-pills">
+          <button class="pill" data-size="XS" data-delta="0" data-range="7–9&quot;">XS</button>
+          <button class="pill" data-size="S" data-delta="0" data-range="9–11&quot;">S</button>
+          <button class="pill" data-size="M" data-delta="2" data-range="11–14&quot;">M</button>
+          <button class="pill" data-size="L" data-delta="4" data-range="14–18&quot;">L</button>
+          <button class="pill" data-size="XL" data-delta="6" data-range="18–22&quot;">XL</button>
         </div>
-        <div class="charm-gallery-note">A few charm &amp; accent styles for inspiration — just describe your pick above and we'll confirm it with you before your order ships.</div>
+        <div class="size-help" id="size-help"></div>
+        <div class="size-between">Between sizes? Choose the larger size. <a href="size-guide.html">How to measure →</a></div>
       </div>
-    </div>
 
-    <div class="field-group">
-      <span class="field-label">Quantity</span>
-      <div class="qty-row">
-        <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
-        <span id="qty-val" aria-live="polite">1</span>
-        <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+      <!-- step 3 -->
+      <div class="step">
+        <div class="step-head"><span class="step-num">3</span><span class="field-label">Make it personal</span></div>
+        <div class="charm-options" id="charm-options">
+          <label class="charm-opt"><input type="radio" name="charm" value="none" checked> <span>No charm</span></label>
+          <label class="charm-opt"><input type="radio" name="charm" value="birthstone"> <span>Birthstone charm <em>+$8</em></span></label>
+          <label class="charm-opt"><input type="radio" name="charm" value="custom"> <span>Initial / custom charm <em>+$8</em></span></label>
+        </div>
+        <div class="charm-detail" id="birthstone-wrap">
+          <label class="field-label" for="birthstone">Birth month</label>
+          <select id="birthstone"></select>
+          <div class="birthstone-dots" id="birthstone-dots"></div>
+        </div>
+        <div class="charm-detail" id="custom-wrap">
+          <label class="field-label" for="charm-note">Tell us what you'd like</label>
+          <textarea id="charm-note" rows="2" placeholder="An initial, a heart, a symbol… We'll confirm the exact style with you after checkout."></textarea>
+          <div class="charm-gallery">
+            <img src="assets/charm-gems.jpg" alt="Example gem-style charms" loading="lazy" width="900" height="1124">
+            <img src="assets/charm-symbols.jpg" alt="Example symbol and initial charms" loading="lazy" width="900" height="1124">
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="price-row">
-      <span class="field-label" style="margin:0;">Price</span>
-      <span class="total" id="unit-total">$22.00</span>
-    </div>
+      <!-- step 4 -->
+      <div class="step">
+        <div class="step-head"><span class="step-num">4</span><span class="field-label">Pup's name <span class="optional">(optional — helps us personalize)</span></span></div>
+        <input type="text" id="pup-name" maxlength="40" placeholder="e.g. Stevie">
+      </div>
 
-    <button class="btn btn-dark add-to-cart" id="add-to-cart" style="margin-top:26px;width:100%;">Add to Cart</button>
+      <div class="atc-row">
+        <div class="qty-row">
+          <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
+          <span id="qty-val" aria-live="polite">1</span>
+          <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="btn btn-dark add-to-cart" id="add-to-cart">Add to Cart</button>
+      </div>
 
-    <div class="safety-note">Designed for style, not restraint. Très Perlé necklaces are decorative pet jewelry made with comfortable stretch for easy on + off — they're not intended for leash attachment. Supervised wear is recommended.<br>Made to order — please allow 10–14 business days to make and ship. Complimentary shipping on orders $100+. As each piece is made to order, all sales are final.</div>
+      <div class="safety-note">Designed for style, not restraint — decorative pet jewelry with comfortable stretch, not intended for leash attachment. Supervised wear is recommended. Made to order; all sales are final. Complimentary shipping on orders $100+.</div>
 
-    <div class="details-accordion">
-      <details>
-        <summary>Details</summary>
-        <p>A dainty stretch necklace strung with faux pearls, designed to slip gently over your dog's head — no clasps, no hardware to wrestle with. Available in three signature styles and five sizes, with an optional charm or accent pearl.</p>
-      </details>
-      <details>
-        <summary>Fit + Stretch</summary>
-        <p>Each necklace is designed with comfortable stretch for an easy on-and-off fit. Sized by neck measurement — see the <a href="size-guide.html">size guide</a> for the full chart.</p>
-      </details>
-      <details>
-        <summary>Materials</summary>
-        <p>Faux pearls hand-strung on flexible elastic. Charm and accent pearl add-ons are gold-tone with faceted crystal accents.</p>
-      </details>
-      <details>
-        <summary>Care</summary>
-        <p>Wipe clean with a soft, dry cloth. Store away from moisture and remove before bath time or swimming.</p>
-      </details>
-      <details>
-        <summary>Safety</summary>
-        <p>Decorative pet jewelry — not designed for leash attachment or restraint. Remove during rough play, crating, or when your pet is unattended.</p>
-      </details>
-      <details>
-        <summary>Shipping + Returns</summary>
-        <p>Made to order — please allow 10–14 business days. Complimentary shipping on orders $100+. All sales are final; we're unable to offer returns or refunds. Questions about your order? <a href="mailto:brettekey@hotmail.com">Email us</a>.</p>
-      </details>
+      <div class="details-accordion">
+        <details>
+          <summary>Details</summary>
+          <p>A dainty stretch necklace strung with faux pearls, designed to slip gently over your dog's head — no clasps, no hardware to wrestle with. Choose from our signature pearl styles in five sizes, with an optional birthstone or custom charm.</p>
+        </details>
+        <details>
+          <summary>Materials + Care</summary>
+          <p>Faux pearls hand-strung on flexible elastic; charms are gold-tone with crystal accents. Wipe clean with a soft, dry cloth and remove before bath time or swimming.</p>
+        </details>
+        <details>
+          <summary>Safety</summary>
+          <p>Not designed for leash attachment or restraint. Remove during rough play, crating, or when your pet is unattended.</p>
+        </details>
+        <details>
+          <summary>Shipping + Returns</summary>
+          <p>Made to order — please allow 10–14 business days. Complimentary shipping on orders $100+, otherwise a flat $9.95. All sales are final. Questions? <a href="#contact">Send us a message</a>.</p>
+        </details>
+      </div>
     </div>
   </div>
 </section>
@@ -548,52 +649,86 @@
 
 <section class="instagram" id="instagram">
   <div class="section-head">
-    <span class="eyebrow">Follow Along</span>
-    <h2>@trespearle on Instagram</h2>
-    <p>Pearls, dachshunds, and a little extra sparkle. Come say hello.</p>
+    <span class="eyebrow">Real pups · Real pearls</span>
+    <h2>Spotted on @trespearle</h2>
+    <p>Our favorite clients, showing off. Tag <strong>@trespearle</strong> for a chance to be featured.</p>
   </div>
-
-  <div class="ig-grid">
-    <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-1.jpg" alt="Dachshund wearing a Très Perlé pearl necklace, Instagram post" width="600" height="600" loading="lazy">
-      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
+  <div class="ig-grid ig-grid-12">
+    <a class="ig-tile" href="https://www.instagram.com/p/DfDWQW7yMuK/" target="_blank" rel="noopener">
+      <img src="assets/ig-01.jpg" alt="Goldendoodle client wearing pink Très Perlé pearls — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
     </a>
-    <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-2.jpg" alt="Très Perlé styled Instagram post featuring dachshunds in pearls" width="600" height="600" loading="lazy">
-      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
+    <a class="ig-tile" href="https://www.instagram.com/p/DfCwE2BRt0k/" target="_blank" rel="noopener">
+      <img src="assets/ig-02.jpg" alt="Dachshund lounging in Très Perlé pearls — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
     </a>
-    <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-3.jpg" alt="Two dachshunds wearing Très Perlé pearl necklaces, Instagram post" width="600" height="600" loading="lazy">
-      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
+    <a class="ig-tile" href="https://www.instagram.com/p/DfBXdVAPhUJ/" target="_blank" rel="noopener">
+      <img src="assets/ig-03.jpg" alt="Dapple dachshund in Très Perlé pearls — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
     </a>
-    <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-4.jpg" alt="Meet the Collection - Classicé, Rosé and Noiré, Instagram post" width="600" height="600" loading="lazy">
-      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
+    <a class="ig-tile" href="https://www.instagram.com/p/DfAjFS5hRw8/" target="_blank" rel="noopener">
+      <img src="assets/ig-04.jpg" alt="Très Perlé birthstone charm chart — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
     </a>
-    <a class="ig-tile" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <img src="assets/ig-5.jpg" alt="Dachshunds wearing Très Perlé pearls outdoors, Instagram post" width="600" height="600" loading="lazy">
-      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
+    <a class="ig-tile" href="https://www.instagram.com/p/De-wCP_hn49/" target="_blank" rel="noopener">
+      <img src="assets/ig-05.jpg" alt="Ombré green-to-blue Très Perlé necklace — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
     </a>
-    <a class="ig-tile ig-cta" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">
-      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
-      <span>Follow<br>@trespearle</span>
-      <small>44+ friends and counting</small>
+    <a class="ig-tile" href="https://www.instagram.com/p/De2l9qwBIIf/" target="_blank" rel="noopener">
+      <img src="assets/ig-06.jpg" alt="Dachshund in a Très Perlé pearl necklace with charm — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/p/Deu1W8DAaXB/" target="_blank" rel="noopener">
+      <img src="assets/ig-07.jpg" alt="Black, orange and ivory Halloween pearl necklace — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/p/DeuLxgttxrA/" target="_blank" rel="noopener">
+      <img src="assets/ig-08.jpg" alt="Two dachshunds, one wearing Très Perlé pearls — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/p/DemnzjUp3Pl/" target="_blank" rel="noopener">
+      <img src="assets/ig-09.jpg" alt="Blue pearl necklace with charm — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/p/Dec1jEvhLuG/" target="_blank" rel="noopener">
+      <img src="assets/ig-10.jpg" alt="Ivory and teal pearl necklace with charm — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/p/DeaMrTpSPvm/" target="_blank" rel="noopener">
+      <img src="assets/ig-11.jpg" alt="Dachshund creekside wearing Très Perlé pearls — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/p/DeNakfhhbLb/" target="_blank" rel="noopener">
+      <img src="assets/ig-12.jpg" alt="Dachshund posing in Très Perlé pearls — Instagram post" width="640" height="640" loading="lazy">
+      <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"></circle></svg>
     </a>
   </div>
-
   <a class="btn btn-outline ig-follow-btn" href="https://www.instagram.com/trespearle/" target="_blank" rel="noopener">Follow on Instagram</a>
 </section>
 
-<section class="signup">
-  <span class="eyebrow">Stay in Touch</span>
-  <h2>Join the Pup List</h2>
-  <p>New styles, pretty pups, and a little sparkle in your inbox.</p>
-  <form class="signup-form" id="signup-form">
-    <input type="email" id="signup-email" placeholder="Your email address" aria-label="Email address" required>
-    <button type="submit">Join</button>
-  </form>
-  <div class="signup-note">We'll never share your email. Unsubscribe anytime.</div>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-copy">
+      <span class="eyebrow">Say Hello</span>
+      <h2>Questions? Custom ideas?</h2>
+      <p>Sizing help, a custom color story, or a gift for a very good dog — send us a note and Brette will get back to you personally.</p>
+    </div>
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="cf-row">
+        <label>Your name<input type="text" name="name" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+      </div>
+      <label>Pup's name &amp; breed <span class="optional">(optional)</span><input type="text" name="pup"></label>
+      <label>Message<textarea name="message" rows="4" required></textarea></label>
+      <label class="cf-check"><input type="checkbox" name="pup_list" value="Yes"> Add me to the Pup List for new styles &amp; pretty pups</label>
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn btn-dark" id="contact-submit">Send Message</button>
+      <div class="cf-status" id="cf-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
 </section>
+
 
 <footer>
   <div class="foot-grid">
@@ -608,7 +743,7 @@
     <div>
       <h4>Shop</h4>
       <ul class="foot-links">
-        <li><a href="#shop">Build Their Necklace</a></li>
+        <li><a href="#shop">Design Their Necklace</a></li>
         <li><a href="size-guide.html">Size Guide</a></li>
         <li><a href="our-story.html">Our Story</a></li>
       </ul>
@@ -618,12 +753,12 @@
       <ul class="foot-links">
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
-        <li><a href="mailto:brettekey@hotmail.com">Contact Us</a></li>
+        <li><a href="#contact">Contact Us</a></li>
       </ul>
     </div>
     <div>
       <h4>Say Hello</h4>
-      <p style="opacity:.75;">Questions about sizing, charms, or your order?<br>Email Brette at <a href="mailto:brettekey@hotmail.com" style="text-decoration:underline;">brettekey@hotmail.com</a> — we're happy to help.</p>
+      <p style="opacity:.75;">Questions about sizing, charms, or your order?<br><a href="#contact" style="text-decoration:underline;">Send us a message</a> — we're happy to help.</p>
     </div>
   </div>
   <div class="disclaimer">Très Perlé necklaces are decorative pet jewelry designed for style, not restraint — they are not intended for leash attachment. Supervised wear is recommended; remove during rough play, crating, or when your pet is unattended.</div>
@@ -638,46 +773,73 @@
   </div>
   <div class="cart-items" id="cart-items"></div>
   <div class="drawer-foot">
-    <div class="pay-note" id="free-shipping-msg" style="margin-bottom:14px;"></div>
+    <div class="ship-progress" id="ship-progress"><span id="ship-bar"></span></div>
+    <div class="pay-note" id="free-shipping-msg" style="margin-bottom:8px;"></div>
+    <div id="ship-nudge"></div>
+    <div class="gift">
+      <label><input type="checkbox" id="gift-toggle"> This is a gift — add a note</label>
+      <div id="gift-wrap"><textarea id="gift-note" rows="2" maxlength="200" placeholder="Your gift message (we'll tuck it in the box)"></textarea></div>
+    </div>
     <div class="subtotal"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
     <div class="subtotal"><span>Shipping</span><span id="shipping-cost">$0.00</span></div>
     <div class="subtotal" id="total-row" style="font-weight:bold;border-top:1px solid var(--line);padding-top:12px;margin-top:2px;"><span>Total</span><span id="order-total">$0.00</span></div>
     <button class="pay-btn" id="checkout-btn">Checkout with PayPal / Venmo</button>
-    <div class="pay-note">Secure checkout via PayPal. Venmo appears automatically as a payment option for eligible U.S. buyers. All sales are final.</div>
+    <div class="pay-note">Secure checkout via PayPal — pay with PayPal, Venmo, or any debit/credit card (no PayPal account needed). All sales are final.</div>
+  </div>
+</div>
+
+<!-- Funnel: post add-to-cart offer -->
+<div class="upsell-overlay" id="upsell-overlay"></div>
+<div class="upsell" id="upsell" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
+  <button class="upsell-close" id="upsell-close" aria-label="Close">×</button>
+  <div class="upsell-added" id="upsell-added"></div>
+
+  <div class="upsell-step" id="offer-charm">
+    <span class="eyebrow">Make it theirs</span>
+    <h3 id="upsell-title">Add a birthstone charm for $8?</h3>
+    <p>Our most-loved finishing touch — a little sparkle in your pup's birth month.</p>
+    <select id="upsell-month" aria-label="Birth month"></select>
+    <div class="upsell-actions">
+      <button class="btn btn-dark" id="upsell-charm-yes">Add Charm · $8</button>
+      <button class="link-btn" id="upsell-charm-no">No thanks</button>
+    </div>
+  </div>
+
+  <div class="upsell-step" id="offer-sibling">
+    <span class="eyebrow">Another pup at home?</span>
+    <h3>Twin them with a matching necklace.</h3>
+    <p>Same pearl style — just pick their size.</p>
+    <div class="size-pills" id="sibling-sizes">
+      <button class="pill" data-size="XS" data-delta="0">XS</button>
+      <button class="pill" data-size="S" data-delta="0">S</button>
+      <button class="pill" data-size="M" data-delta="2">M</button>
+      <button class="pill" data-size="L" data-delta="4">L</button>
+      <button class="pill" data-size="XL" data-delta="6">XL</button>
+    </div>
+    <div class="upsell-actions">
+      <button class="btn btn-dark" id="upsell-sib-yes" disabled>Add Matching Necklace</button>
+      <button class="link-btn" id="upsell-sib-no">Just this one</button>
+    </div>
   </div>
 </div>
 
 <!-- Hidden PayPal cart form, built dynamically at checkout -->
-<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:none;"></form>
+<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:none;"></form>
 
 <script>
 (function(){
-  /* ---------- floating dachshunds: slower, eased, randomized ---------- */
+  /* ---------- floating dachshunds ---------- */
   var track = document.getElementById('floating-mascots');
   var tops = [110, 175, 240];
-  var count = 3;
-  for (var i = 0; i < count; i++) {
+  for (var i = 0; i < 3; i++) {
     var wrap = document.createElement('div');
     wrap.className = 'mascot-track';
-    var crossDur = (26 + Math.random() * 22).toFixed(1);      // 26s - 48s, varied per dog
-    var crossDelay = (Math.random() * 24).toFixed(1);          // 0 - 24s, staggered randomly
-    var bobDur = (3.2 + Math.random() * 2.6).toFixed(1);        // 3.2s - 5.8s
-    var bobDelay = (Math.random() * 3).toFixed(1);
-    var top = tops[i] + (Math.random() * 20 - 10);
-    wrap.style.top = top + 'px';
-    wrap.style.animationName = 'doxie-cross';
-    wrap.style.animationDuration = crossDur + 's';
-    wrap.style.animationDelay = crossDelay + 's';
-    wrap.style.animationTimingFunction = 'ease-in-out';
-    wrap.style.animationIterationCount = 'infinite';
+    wrap.style.top = (tops[i] + (Math.random() * 20 - 10)) + 'px';
+    wrap.style.animation = 'doxie-cross ' + (26 + Math.random() * 22).toFixed(1) + 's ease-in-out ' + (Math.random() * 24).toFixed(1) + 's infinite';
     var img = document.createElement('img');
     img.src = 'assets/floating-dachshund-outline.png';
     img.alt = '';
-    img.style.animationName = 'doxie-bob';
-    img.style.animationDuration = bobDur + 's';
-    img.style.animationDelay = bobDelay + 's';
-    img.style.animationTimingFunction = 'ease-in-out';
-    img.style.animationIterationCount = 'infinite';
+    img.style.animation = 'doxie-bob ' + (3.2 + Math.random() * 2.6).toFixed(1) + 's ease-in-out ' + (Math.random() * 3).toFixed(1) + 's infinite';
     wrap.appendChild(img);
     track.appendChild(wrap);
   }
@@ -686,257 +848,346 @@
   document.getElementById('menu-toggle').addEventListener('click', function(){
     document.getElementById('main-nav').classList.toggle('open');
   });
+  document.querySelectorAll('#main-nav a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('main-nav').classList.remove('open'); });
+  });
 
-  /* ---------- configurator state ---------- */
-  var PRODUCTS = {
-    classic: {name:'Classicé', desc:'Ivory faux pearls'},
-    rose:    {name:'Rosé', desc:'Blush faux pearls'},
-    noir:    {name:'Noiré', desc:'Ivory + midnight faux pearls'}
-  };
-  var BASE_PRICE = 22;
-  var CHARM_PRICE = 8;
+  /* =========================================================
+     PRODUCT OPTIONS — edit this list to add/remove styles.
+     img: photo shown when selected. dots: swatch colors.
+     ========================================================= */
+  var STYLES = [
+    {id:'classic', name:'Classicé', desc:'Ivory faux pearls',              img:'assets/product-classic.jpg', dots:['#f4efe6','#e9e1d3']},
+    {id:'rose',    name:'Rosé',     desc:'Blush pink faux pearls',         img:'assets/product-rose.jpg',    dots:['#f2c9cf','#e8a9b3']},
+    {id:'noir',    name:'Noiré',    desc:'Ivory + midnight pearls',        img:'assets/product-noir.jpg',    dots:['#f4efe6','#1d1b22']},
+    {id:'ombre',   name:'Ombré',    desc:'Spring green to sapphire blue',  img:'assets/ig-05.jpg',           dots:['#9ccf6a','#2f8f7f','#1f3f8f']},
+    {id:'bleu',    name:'Bleu',     desc:'Aqua + sapphire pearls',         img:'assets/ig-09.jpg',           dots:['#7cc3d9','#24508f']},
+    {id:'paon',    name:'Paon',     desc:'Ivory pearls + teal accents',    img:'assets/ig-10.jpg',           dots:['#f4efe6','#16707a']},
+    {id:'custom',  name:'Custom',   desc:'Your own color story — tell us in the notes', img:'assets/ig-07.jpg', dots:['#e7b6a4','#c17c63','#211a18']}
+  ];
+  var BIRTHSTONES = [
+    ['January','Garnet','#8b1a2b'],['February','Amethyst','#8a4fb5'],['March','Aquamarine','#7fd3e0'],
+    ['April','Diamond','#e8eef2'],['May','Emerald','#1f9a5c'],['June','Alexandrite','#a77ad1'],
+    ['July','Ruby','#c4102e'],['August','Peridot','#9ccc3a'],['September','Sapphire','#1f47b0'],
+    ['October','Rose','#f2a7c0'],['November','Topaz','#f0a52b'],['December','Blue Zircon','#1aa3b8']
+  ];
+  var BASE_PRICE = 22, CHARM_PRICE = 8, FREE_SHIP = 100, FLAT_SHIP = 9.95;
 
-  var state = {color:'classic', size:'XS', delta:0, charm:false, note:'', qty:1};
+  var state = {style:'classic', size:'XS', delta:0, charm:'none', month:'', note:'', pup:'', qty:1};
+  var styleById = function(id){ return STYLES.filter(function(s){return s.id===id;})[0]; };
 
-  var swatchEls = document.querySelectorAll('.swatch-card');
-  var pillEls = document.querySelectorAll('.pill');
-  var charmToggle = document.getElementById('charm-toggle');
-  var charmNoteWrap = document.getElementById('charm-note-wrap');
-  var charmNote = document.getElementById('charm-note');
+  /* style grid */
+  var grid = document.getElementById('style-grid');
+  STYLES.forEach(function(s){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'style-chip'; b.dataset.style = s.id;
+    b.setAttribute('aria-label', s.name + ' — ' + s.desc);
+    b.innerHTML = '<img src="' + s.img + '" alt="" loading="lazy"><span class="chip-name">' + s.name + '</span>' +
+      '<span class="chip-dots">' + s.dots.map(function(c){return '<i style="background:' + c + '"></i>';}).join('') + '</span>';
+    b.addEventListener('click', function(){ selectStyle(s.id); });
+    grid.appendChild(b);
+  });
+  function selectStyle(id){
+    var s = styleById(id); state.style = id;
+    grid.querySelectorAll('.style-chip').forEach(function(el){ el.classList.toggle('selected', el.dataset.style === id); });
+    document.getElementById('style-name').textContent = s.name;
+    var main = document.getElementById('main-photo');
+    main.src = s.img; main.alt = s.name + ' pearl stretch dog necklace — ' + s.desc;
+    document.getElementById('main-caption').textContent = s.name + ' — ' + s.desc;
+    if (id === 'custom') { setCharm(state.charm === 'none' ? 'none' : state.charm); document.getElementById('pup-name').placeholder = 'e.g. Stevie'; }
+    updatePrice();
+  }
+
+  /* sizes */
+  var pillEls = document.querySelectorAll('#size-pills .pill');
+  function selectSize(el){
+    state.size = el.dataset.size; state.delta = parseFloat(el.dataset.delta);
+    pillEls.forEach(function(p){ p.classList.toggle('selected', p === el); });
+    document.getElementById('size-help').textContent = state.size + ' — fits necks ' + el.dataset.range;
+    updatePrice();
+  }
+  pillEls.forEach(function(el){ el.addEventListener('click', function(){ selectSize(el); }); });
+
+  /* charms */
+  function fillMonths(sel){
+    sel.innerHTML = '<option value="">Choose a month…</option>' + BIRTHSTONES.map(function(b){
+      return '<option value="' + b[0] + '">' + b[0] + ' — ' + b[1] + '</option>'; }).join('');
+  }
+  var monthSel = document.getElementById('birthstone');
+  fillMonths(monthSel);
+  document.getElementById('birthstone-dots').innerHTML = BIRTHSTONES.map(function(b){
+    return '<button type="button" title="' + b[0] + ' — ' + b[1] + '" data-month="' + b[0] + '" style="background:' + b[2] + '"></button>'; }).join('');
+  document.querySelectorAll('#birthstone-dots button').forEach(function(btn){
+    btn.addEventListener('click', function(){ monthSel.value = btn.dataset.month; monthSel.dispatchEvent(new Event('change')); });
+  });
+  monthSel.addEventListener('change', function(){
+    state.month = monthSel.value;
+    document.querySelectorAll('#birthstone-dots button').forEach(function(b){ b.classList.toggle('selected', b.dataset.month === state.month); });
+  });
+  function setCharm(v){
+    state.charm = v;
+    document.querySelectorAll('input[name=charm]').forEach(function(r){ r.checked = r.value === v; });
+    document.getElementById('birthstone-wrap').classList.toggle('show', v === 'birthstone');
+    document.getElementById('custom-wrap').classList.toggle('show', v === 'custom');
+    updatePrice();
+  }
+  document.querySelectorAll('input[name=charm]').forEach(function(r){
+    r.addEventListener('change', function(){ setCharm(r.value); });
+  });
+  document.getElementById('charm-note').addEventListener('input', function(e){ state.note = e.target.value; });
+  document.getElementById('pup-name').addEventListener('input', function(e){ state.pup = e.target.value; });
+
+  /* qty + price */
   var qtyVal = document.getElementById('qty-val');
-
-  function selectColor(color){
-    state.color = color;
-    swatchEls.forEach(function(el){ el.classList.toggle('selected', el.dataset.color === color); });
-    document.getElementById('selected-name').textContent = PRODUCTS[color].name + ' — Pearl Stretch Dog Necklace';
-    updatePrice();
-  }
-  function selectSize(size, delta, range){
-    state.size = size; state.delta = delta;
-    pillEls.forEach(function(el){ el.classList.toggle('selected', el.dataset.size === size); });
-    var help = document.getElementById('size-help');
-    if (help) help.textContent = size + ' — Fits necks ' + range;
-    updatePrice();
-  }
-  function unitPrice(){
-    return BASE_PRICE + state.delta + (state.charm ? CHARM_PRICE : 0);
-  }
+  document.getElementById('qty-minus').addEventListener('click', function(){ state.qty = Math.max(1, state.qty - 1); qtyVal.textContent = state.qty; });
+  document.getElementById('qty-plus').addEventListener('click', function(){ state.qty++; qtyVal.textContent = state.qty; });
+  function unitPrice(){ return BASE_PRICE + state.delta + (state.charm !== 'none' ? CHARM_PRICE : 0); }
   function updatePrice(){
     var p = '$' + unitPrice().toFixed(2);
     document.getElementById('unit-total').textContent = p;
-    var stickyTotal = document.getElementById('sticky-total');
-    if (stickyTotal) stickyTotal.textContent = p;
+    document.getElementById('sticky-total').textContent = p;
   }
 
-  swatchEls.forEach(function(el){ el.addEventListener('click', function(){ selectColor(el.dataset.color); }); });
-  pillEls.forEach(function(el){ el.addEventListener('click', function(){ selectSize(el.dataset.size, parseFloat(el.dataset.delta), el.dataset.range); }); });
-  pillEls[0].click();
-  selectColor('classic');
+  selectSize(pillEls[0]);
+  selectStyle('classic');
 
-  /* ---------- sticky mobile add-to-cart ---------- */
-  var stickyAtc = document.getElementById('sticky-atc');
-  var configuratorEl = document.querySelector('.configurator');
-  if (stickyAtc && configuratorEl) {
-    window.addEventListener('scroll', function(){
-      var rect = configuratorEl.getBoundingClientRect();
-      var pastConfigurator = rect.bottom < 0;
-      stickyAtc.classList.toggle('show', pastConfigurator);
-    }, {passive:true});
-    document.getElementById('sticky-add-to-cart').addEventListener('click', function(){ addToCart(); });
-  }
-
-  charmToggle.addEventListener('change', function(){
-    state.charm = charmToggle.checked;
-    charmNoteWrap.classList.toggle('show', state.charm);
-    updatePrice();
-  });
-  charmNote.addEventListener('input', function(){ state.note = charmNote.value; });
-
-  document.getElementById('qty-minus').addEventListener('click', function(){
-    state.qty = Math.max(1, state.qty - 1); qtyVal.textContent = state.qty;
-  });
-  document.getElementById('qty-plus').addEventListener('click', function(){
-    state.qty = state.qty + 1; qtyVal.textContent = state.qty;
-  });
-
-  /* ---------- cart ---------- */
-  var CART_KEY = 'tp_cart';
+  /* ---------- cart (stored in this browser) ---------- */
+  var CART_KEY = 'tp_cart_v2', GIFT_KEY = 'tp_gift';
   function loadCart(){ try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e){ return []; } }
-  function saveCart(cart){ try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e){} }
+  function saveCart(c){ try { localStorage.setItem(CART_KEY, JSON.stringify(c)); } catch(e){} }
+
+  function charmLabel(item){
+    if (item.charm === 'birthstone') return 'Birthstone charm' + (item.month ? ' (' + item.month + ')' : '');
+    if (item.charm === 'custom') return 'Custom charm' + (item.note ? ' (' + item.note + ')' : '');
+    return '';
+  }
+  function itemTitle(item){ return item.styleName + ' Pearl Necklace'; }
+  function itemMeta(item){
+    var bits = ['Size ' + item.size];
+    var c = charmLabel(item); if (c) bits.push(c);
+    if (item.pup) bits.push('For ' + item.pup);
+    return bits;
+  }
+
+  function validate(){
+    if (state.charm === 'birthstone' && !state.month){ flash('birthstone-wrap', 'Please choose a birth month.'); return false; }
+    if (state.charm === 'custom' && !state.note.trim()){ flash('custom-wrap', 'Tell us a little about the charm you’d like.'); return false; }
+    if (state.style === 'custom' && !state.note.trim() && state.charm !== 'custom'){
+      setCharm('custom'); document.getElementById('charm-note').placeholder = 'Describe your colors (and any charm) — we’ll confirm before we string it.';
+      flash('custom-wrap', 'Describe your custom colors here.'); return false;
+    }
+    return true;
+  }
+  function flash(id, msg){
+    var el = document.getElementById(id);
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    var m = el.querySelector('.field-error') || el.appendChild(Object.assign(document.createElement('div'), {className:'field-error'}));
+    m.textContent = msg; setTimeout(function(){ m.textContent=''; }, 4000);
+  }
 
   function addToCart(){
-    var cart = loadCart();
-    cart.push({
-      color: PRODUCTS[state.color].name,
-      size: state.size,
-      charm: state.charm,
-      note: state.note,
-      qty: state.qty,
-      unitPrice: unitPrice()
-    });
-    saveCart(cart);
+    if (!validate()) return;
+    var s = styleById(state.style);
+    var item = {style:s.id, styleName:s.name, img:s.img, size:state.size, delta:state.delta, charm:state.charm,
+      month:state.charm === 'birthstone' ? state.month : '', note:(state.charm === 'custom' || state.style === 'custom') ? state.note : '',
+      pup:state.pup.trim(), qty:state.qty, unitPrice:unitPrice()};
+    var cart = loadCart(); cart.push(item); saveCart(cart);
     renderCart();
-    openDrawer();
+    openUpsell(cart.length - 1);
   }
   document.getElementById('add-to-cart').addEventListener('click', addToCart);
+  document.getElementById('sticky-add-to-cart').addEventListener('click', function(){
+    document.getElementById('builder').scrollIntoView({behavior:'smooth'}); });
 
+  /* ---------- funnel: charm upsell → sibling upsell → cart ---------- */
+  var upsell = document.getElementById('upsell'), upOverlay = document.getElementById('upsell-overlay');
+  var upIdx = -1, sibEl = null;
+  fillMonths(document.getElementById('upsell-month'));
+  function showStep(id){
+    ['offer-charm','offer-sibling'].forEach(function(s){ document.getElementById(s).style.display = s === id ? 'block' : 'none'; });
+  }
+  function openUpsell(idx){
+    upIdx = idx;
+    var item = loadCart()[idx];
+    document.getElementById('upsell-added').innerHTML = '<img src="' + item.img + '" alt=""><div><strong>Added to cart ✓</strong><br>' +
+      itemTitle(item) + ' · ' + itemMeta(item).join(' · ') + '</div>';
+    sibEl = null; document.getElementById('upsell-sib-yes').disabled = true;
+    document.querySelectorAll('#sibling-sizes .pill').forEach(function(p){ p.classList.remove('selected'); });
+    showStep(item.charm === 'none' ? 'offer-charm' : 'offer-sibling');
+    upsell.classList.add('open'); upOverlay.classList.add('show');
+  }
+  function closeUpsell(toCart){
+    upsell.classList.remove('open'); upOverlay.classList.remove('show');
+    if (toCart) { renderCart(); openDrawer(); }
+  }
+  document.getElementById('upsell-close').addEventListener('click', function(){ closeUpsell(true); });
+  upOverlay.addEventListener('click', function(){ closeUpsell(true); });
+  document.getElementById('upsell-charm-yes').addEventListener('click', function(){
+    var m = document.getElementById('upsell-month').value;
+    if (!m){ document.getElementById('upsell-month').focus(); return; }
+    var cart = loadCart(), it = cart[upIdx];
+    it.charm = 'birthstone'; it.month = m; it.unitPrice = BASE_PRICE + it.delta + CHARM_PRICE;
+    saveCart(cart); renderCart(); showStep('offer-sibling');
+  });
+  document.getElementById('upsell-charm-no').addEventListener('click', function(){ showStep('offer-sibling'); });
+  document.querySelectorAll('#sibling-sizes .pill').forEach(function(p){
+    p.addEventListener('click', function(){
+      sibEl = p; document.querySelectorAll('#sibling-sizes .pill').forEach(function(x){ x.classList.toggle('selected', x === p); });
+      document.getElementById('upsell-sib-yes').disabled = false;
+    });
+  });
+  document.getElementById('upsell-sib-yes').addEventListener('click', function(){
+    if (!sibEl) return;
+    var cart = loadCart(), base = cart[upIdx];
+    var d = parseFloat(sibEl.dataset.delta);
+    cart.push({style:base.style, styleName:base.styleName, img:base.img, size:sibEl.dataset.size, delta:d, charm:'none', month:'', note:'', pup:'', qty:1, unitPrice:BASE_PRICE + d});
+    saveCart(cart); closeUpsell(true);
+  });
+  document.getElementById('upsell-sib-no').addEventListener('click', function(){ closeUpsell(true); });
+
+  /* ---------- cart drawer ---------- */
+  function totals(cart){
+    var sub = cart.reduce(function(t, it){ return t + it.unitPrice * it.qty; }, 0);
+    var ship = cart.length === 0 ? 0 : (sub >= FREE_SHIP ? 0 : FLAT_SHIP);
+    return {sub:sub, ship:ship, total:sub + ship, count:cart.reduce(function(t, it){ return t + it.qty; }, 0)};
+  }
   function renderCart(){
-    var cart = loadCart();
+    var cart = loadCart(), t = totals(cart);
     var wrap = document.getElementById('cart-items');
-    wrap.innerHTML = '';
-    var subtotal = 0;
-    var count = 0;
-    if (cart.length === 0) {
-      wrap.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
-    }
+    wrap.innerHTML = cart.length ? '' : '<div class="empty-cart">Your cart is empty.<br><a href="#shop" id="empty-shop">Design a necklace →</a></div>';
     cart.forEach(function(item, idx){
-      subtotal += item.unitPrice * item.qty;
-      count += item.qty;
       var row = document.createElement('div');
       row.className = 'cart-item';
-      var metaBits = [item.size + ' size'];
-      if (item.charm) metaBits.push('+ charm/accent pearl' + (item.note ? ' (' + item.note + ')' : ''));
-      metaBits.push('Qty ' + item.qty);
-      row.innerHTML =
-        '<div><div class="name">' + item.color + ' Necklace</div>' +
-        '<div class="meta">' + metaBits.join(' · ') + '</div>' +
-        '<button class="remove" data-idx="' + idx + '">Remove</button></div>' +
-        '<div>$' + (item.unitPrice * item.qty).toFixed(2) + '</div>';
+      row.innerHTML = '<img class="ci-img" src="' + item.img + '" alt="">' +
+        '<div class="ci-body"><div class="name">' + itemTitle(item) + '</div>' +
+        '<div class="meta">' + itemMeta(item).join(' · ') + '</div>' +
+        '<div class="ci-qty"><button data-act="minus" data-idx="' + idx + '" aria-label="Decrease">−</button><span>' + item.qty + '</span><button data-act="plus" data-idx="' + idx + '" aria-label="Increase">+</button>' +
+        '<button class="remove" data-act="remove" data-idx="' + idx + '">Remove</button></div>' +
+        (item.charm === 'none' ? '<button class="ci-charm" data-act="charm" data-idx="' + idx + '">+ Add a birthstone charm ($8)</button>' : '') +
+        '</div><div class="ci-price">$' + (item.unitPrice * item.qty).toFixed(2) + '</div>';
       wrap.appendChild(row);
     });
-    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-    document.getElementById('cart-count').textContent = count;
-    var freeShipThreshold = 100;
-    var flatShippingRate = 9.95;
-    var shippingCost = (cart.length === 0) ? 0 : (subtotal >= freeShipThreshold ? 0 : flatShippingRate);
-    var shipCostEl = document.getElementById('shipping-cost');
-    if (shipCostEl) {
-      shipCostEl.textContent = (cart.length > 0 && shippingCost === 0) ? 'FREE' : '$' + shippingCost.toFixed(2);
-    }
-    var totalEl = document.getElementById('order-total');
-    if (totalEl) {
-      totalEl.textContent = '$' + (subtotal + shippingCost).toFixed(2);
-    }
-    var shipMsgEl = document.getElementById('free-shipping-msg');
-    if (shipMsgEl) {
-      if (cart.length === 0) {
-        shipMsgEl.textContent = '';
-      } else if (subtotal >= freeShipThreshold) {
-        shipMsgEl.textContent = 'You\'ve unlocked complimentary shipping.';
-      } else {
-        shipMsgEl.textContent = 'You\'re $' + (freeShipThreshold - subtotal).toFixed(2) + ' away from complimentary shipping.';
-      }
-    }
-    wrap.querySelectorAll('.remove').forEach(function(btn){
+    wrap.querySelectorAll('[data-act]').forEach(function(btn){
       btn.addEventListener('click', function(){
-        var cart = loadCart();
-        cart.splice(parseInt(btn.dataset.idx, 10), 1);
-        saveCart(cart);
-        renderCart();
+        var c = loadCart(), i = parseInt(btn.dataset.idx, 10), act = btn.dataset.act;
+        if (act === 'remove') c.splice(i, 1);
+        if (act === 'plus') c[i].qty++;
+        if (act === 'minus') { c[i].qty--; if (c[i].qty < 1) c.splice(i, 1); }
+        if (act === 'charm') { saveCart(c); closeDrawer(); openUpsell(i); return; }
+        saveCart(c); renderCart();
       });
     });
+    var es = document.getElementById('empty-shop'); if (es) es.addEventListener('click', closeDrawer);
+
+    document.getElementById('subtotal').textContent = '$' + t.sub.toFixed(2);
+    document.getElementById('shipping-cost').textContent = (cart.length && t.ship === 0) ? 'FREE' : '$' + t.ship.toFixed(2);
+    document.getElementById('order-total').textContent = '$' + t.total.toFixed(2);
+    document.getElementById('cart-count').textContent = t.count;
+
+    /* free-shipping progress nudge */
+    var bar = document.getElementById('ship-bar'), msg = document.getElementById('free-shipping-msg'), nudge = document.getElementById('ship-nudge');
+    var pct = Math.min(100, (t.sub / FREE_SHIP) * 100);
+    bar.style.width = pct + '%';
+    document.getElementById('ship-progress').style.display = cart.length ? 'block' : 'none';
+    nudge.innerHTML = '';
+    if (!cart.length) msg.textContent = '';
+    else if (t.sub >= FREE_SHIP) msg.textContent = 'You’ve unlocked complimentary shipping ✨';
+    else {
+      var gap = FREE_SHIP - t.sub;
+      msg.textContent = 'You’re $' + gap.toFixed(2) + ' away from complimentary shipping.';
+      var last = cart[cart.length - 1];
+      var b = document.createElement('button');
+      b.className = 'nudge-btn';
+      b.textContent = '+ Add a matching ' + last.styleName + ' necklace for another pup';
+      b.addEventListener('click', function(){ closeDrawer(); openUpsell(cart.length - 1); showStep('offer-sibling'); });
+      nudge.appendChild(b);
+    }
+    document.getElementById('checkout-btn').disabled = cart.length === 0;
   }
 
-  function openDrawer(){
-    document.getElementById('drawer').classList.add('open');
-    document.getElementById('overlay').classList.add('show');
-  }
-  function closeDrawer(){
-    document.getElementById('drawer').classList.remove('open');
-    document.getElementById('overlay').classList.remove('show');
-  }
-  document.getElementById('cart-btn').addEventListener('click', function(){ renderCart(); openDrawer(); });
+  /* gift note */
+  var giftToggle = document.getElementById('gift-toggle'), giftNote = document.getElementById('gift-note');
+  try { var g = JSON.parse(localStorage.getItem(GIFT_KEY)) || {}; giftToggle.checked = !!g.on; giftNote.value = g.note || ''; } catch(e){}
+  function saveGift(){ document.getElementById('gift-wrap').classList.toggle('show', giftToggle.checked);
+    try { localStorage.setItem(GIFT_KEY, JSON.stringify({on:giftToggle.checked, note:giftNote.value})); } catch(e){} }
+  giftToggle.addEventListener('change', saveGift); giftNote.addEventListener('input', saveGift); saveGift();
+
+  function openDrawer(){ renderCart(); document.getElementById('drawer').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
+  function closeDrawer(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
+  document.getElementById('cart-btn').addEventListener('click', openDrawer);
   document.getElementById('drawer-close').addEventListener('click', closeDrawer);
   document.getElementById('overlay').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ closeDrawer(); closeUpsell(false); } });
 
-  var ORDER_NOTIFY_EMAIL = 'brit@thebuzzmarketingco.com';
-
-  /* ---------- checkout: PayPal cart (Venmo shows automatically for eligible US buyers) ---------- */
+  /* ---------- checkout: PayPal cart (Venmo shows for eligible US buyers). No email is sent. ---------- */
   document.getElementById('checkout-btn').addEventListener('click', function(){
-    var cart = loadCart();
-    if (cart.length === 0) return;
+    var cart = loadCart(); if (!cart.length) return;
+    var t = totals(cart);
     var form = document.getElementById('paypal-form');
     form.innerHTML = '';
-    function addField(name, value){
-      var input = document.createElement('input');
-      input.type = 'hidden'; input.name = name; input.value = value;
-      form.appendChild(input);
-    }
-    addField('cmd', '_cart');
-    addField('upload', '1');
-    addField('business', 'brettekey@hotmail.com');
-    addField('currency_code', 'USD');
-    addField('no_shipping', '2'); // 2 = buyer must enter a shipping address
-    addField('return', window.location.origin + '/#thank-you');
-    addField('cancel_return', window.location.origin + '/#shop');
-    var subtotal = 0;
-    cart.forEach(function(item){ subtotal += item.unitPrice * item.qty; });
+    function add(n, v){ var i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; form.appendChild(i); }
+    add('cmd', '_cart'); add('upload', '1');
+    add('business', 'brettekey@hotmail.com');
+    add('currency_code', 'USD');
+    add('no_shipping', '2');
+    add('return', window.location.origin + '/?order=thanks#thank-you');
+    add('cancel_return', window.location.origin + '/#shop');
     var n = 0;
     cart.forEach(function(item){
       n++;
-      var itemName = 'Très Perlé ' + item.color + ' Necklace (' + item.size + ')' +
-        (item.charm ? ' + Charm/Accent Pearl' : '') +
-        (item.note ? (' [Note: ' + item.note + ']') : '');
-      addField('item_name_' + n, itemName);
-      addField('amount_' + n, item.unitPrice.toFixed(2));
-      addField('quantity_' + n, item.qty);
+      add('item_name_' + n, ('Très Perlé ' + itemTitle(item) + ' — ' + itemMeta(item).join(', ')).slice(0, 127));
+      add('amount_' + n, item.unitPrice.toFixed(2));
+      add('quantity_' + n, item.qty);
     });
-    var freeShipThreshold = 100;
-    var flatShippingRate = 9.95;
-    if (subtotal < freeShipThreshold) {
-      n++;
-      addField('item_name_' + n, 'Shipping');
-      addField('amount_' + n, flatShippingRate.toFixed(2));
-      addField('quantity_' + n, 1);
-    }
-
-    /* ---------- new-order email notification (via FormSubmit) ---------- */
-    try {
-      var shipping = subtotal < freeShipThreshold ? flatShippingRate : 0;
-      var lines = cart.map(function(item){
-        return item.qty + ' x ' + item.color + ' (' + item.size + ')' +
-          (item.charm ? ' + Charm/Accent Pearl' : '') +
-          (item.note ? ' [Note: ' + item.note + ']' : '') +
-          ' @ $' + item.unitPrice.toFixed(2);
-      }).join('\n');
-      fetch('https://formsubmit.co/ajax/' + ORDER_NOTIFY_EMAIL, {
-        method: 'POST',
-        keepalive: true,
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: 'New Très Perlé order - $' + (subtotal + shipping).toFixed(2),
-          _template: 'box',
-          _captcha: 'false',
-          Status: 'Customer clicked checkout and was sent to PayPal. Confirm payment + shipping address in PayPal.',
-          Items: lines,
-          Subtotal: '$' + subtotal.toFixed(2),
-          Shipping: shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2),
-          Total: '$' + (subtotal + shipping).toFixed(2),
-          Time: new Date().toLocaleString()
-        })
-      }).catch(function(){});
-    } catch (e) {}
-
+    if (t.ship > 0) { n++; add('item_name_' + n, 'Shipping'); add('amount_' + n, FLAT_SHIP.toFixed(2)); add('quantity_' + n, 1); }
+    if (giftToggle.checked && giftNote.value.trim()) add('custom', ('Gift note: ' + giftNote.value.trim()).slice(0, 255));
     form.submit();
   });
 
+  /* thank-you return from PayPal */
+  if (/order=thanks/.test(location.search)) {
+    saveCart([]);
+    var ty = document.getElementById('thank-you');
+    if (ty) { ty.classList.add('show'); }
+  }
+
   renderCart();
 
-  /* ---------- footer copyright year ---------- */
+  /* ---------- contact form — the ONLY thing on the site that sends email ---------- */
+  var CONTACT_TO = 'trespearle@gmail.com';
+  var CONTACT_CC = 'brettekey@hotmail.com';
+  var cf = document.getElementById('contact-form'), st = document.getElementById('cf-status');
+  cf.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!cf.checkValidity()) { st.textContent = 'Please fill in your name, a valid email, and a message.'; st.className = 'cf-status err'; return; }
+    if (cf._honey.value) return;
+    var btn = document.getElementById('contact-submit');
+    btn.disabled = true; btn.textContent = 'Sending…'; st.textContent = ''; st.className = 'cf-status';
+    fetch('https://formsubmit.co/ajax/' + CONTACT_TO, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+      body: JSON.stringify({
+        _subject: 'New Très Perlé message from ' + cf.name.value,
+        _cc: CONTACT_CC,
+        _replyto: cf.email.value,
+        _template: 'box',
+        _captcha: 'false',
+        Name: cf.name.value,
+        Email: cf.email.value,
+        'Pup': cf.pup.value || '—',
+        'Join Pup List': cf.pup_list.checked ? 'Yes' : 'No',
+        Message: cf.message.value
+      })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if (String(d.success) === 'true') { cf.reset(); st.textContent = 'Thank you! Your message is on its way — we’ll be in touch soon. 🤍'; st.className = 'cf-status ok'; }
+      else throw new Error(d.message || 'error');
+    }).catch(function(){
+      st.innerHTML = 'Hmm, that didn’t send. Please email us at <a href="mailto:' + CONTACT_TO + '">' + CONTACT_TO + '</a>.'; st.className = 'cf-status err';
+    }).finally(function(){ btn.disabled = false; btn.textContent = 'Send Message'; });
+  });
+
   var yearEl = document.getElementById('copyright-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  /* ---------- email signup (no ESP connected yet: opens a pre-filled email as a stand-in) ---------- */
-  var signupForm = document.getElementById('signup-form');
-  if (signupForm) {
-    signupForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      var email = document.getElementById('signup-email').value;
-      window.location.href = 'mailto:brettekey@hotmail.com?subject=' +
-        encodeURIComponent('Join the Pup List') +
-        '&body=' + encodeURIComponent('Please add me to the Très Perlé email list: ' + email);
-    });
-  }
 })();
 </script>
 </body>
