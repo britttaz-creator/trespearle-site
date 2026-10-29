@@ -367,7 +367,7 @@
   .step-head strong{color:var(--rose-2);font-weight:600;letter-spacing:.06em;}
   .step-num{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .optional{text-transform:none;letter-spacing:0;color:#9a8a82;font-size:.78rem;}
-  .style-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .style-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
   .style-chip{background:var(--white);border:1px solid var(--line);padding:0 0 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;transition:border-color .2s,box-shadow .2s;}
   .style-chip img{width:100%;aspect-ratio:1/1;object-fit:cover;}
   .style-chip .chip-name{font-family:Georgia,serif;font-size:.9rem;}
@@ -385,6 +385,7 @@
   .birthstone-dots{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
   .birthstone-dots button{width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0;}
   .birthstone-dots button.selected{box-shadow:0 0 0 2px var(--ink);}
+  .charm-example{width:140px;margin-top:14px;border:1px solid var(--line);}
   .field-error{color:#b03a2e;font-size:.82rem;margin-top:8px;}
   .atc-row{display:flex;gap:14px;align-items:center;margin:6px 0 4px;}
   .atc-row .add-to-cart{flex:1;margin:0;}
@@ -568,6 +569,7 @@
           <label class="field-label" for="birthstone">Birth month</label>
           <select id="birthstone"></select>
           <div class="birthstone-dots" id="birthstone-dots"></div>
+          <img class="charm-example" src="assets/charm-birthstone-example.jpg" alt="Example: December birthstone heart charm on ivory and teal pearls" loading="lazy" width="900" height="900">
         </div>
         <div class="charm-detail" id="custom-wrap">
           <label class="field-label" for="charm-note">Tell us what you'd like</label>
@@ -857,13 +859,16 @@
      img: photo shown when selected. dots: swatch colors.
      ========================================================= */
   var STYLES = [
-    {id:'classic', name:'Classicé', desc:'Ivory faux pearls',              img:'assets/product-classic.jpg', dots:['#f4efe6','#e9e1d3']},
-    {id:'rose',    name:'Rosé',     desc:'Blush pink faux pearls',         img:'assets/product-rose.jpg',    dots:['#f2c9cf','#e8a9b3']},
-    {id:'noir',    name:'Noiré',    desc:'Ivory + midnight pearls',        img:'assets/product-noir.jpg',    dots:['#f4efe6','#1d1b22']},
-    {id:'ombre',   name:'Ombré',    desc:'Spring green to sapphire blue',  img:'assets/ig-05.jpg',           dots:['#9ccf6a','#2f8f7f','#1f3f8f']},
-    {id:'bleu',    name:'Bleu',     desc:'Aqua + sapphire pearls',         img:'assets/ig-09.jpg',           dots:['#7cc3d9','#24508f']},
-    {id:'paon',    name:'Paon',     desc:'Ivory pearls + teal accents',    img:'assets/ig-10.jpg',           dots:['#f4efe6','#16707a']},
-    {id:'custom',  name:'Custom',   desc:'Your own color story — tell us in the notes', img:'assets/ig-07.jpg', dots:['#e7b6a4','#c17c63','#211a18']}
+    {id:'classic',     name:'Classicé',    desc:'Ivory faux pearls',                              img:'assets/product-classic.jpg',    dots:['#f4efe6','#e9e1d3']},
+    {id:'rose',        name:'Rosé',        desc:'Blush pearls + iridescent crystals',             img:'assets/style-rose.jpg',         dots:['#f2a7b0','#e9e4f5']},
+    {id:'noir',        name:'Noiré',       desc:'Ivory + onyx pearls, heart charm',               img:'assets/style-noir.jpg',         dots:['#f4efe6','#1d1b22']},
+    {id:'parisienne',  name:'Parisienne',  desc:'Ivory, blush + onyx with gold rondelles',        img:'assets/style-parisienne.jpg',   dots:['#f4efe6','#f2a7b0','#1d1b22']},
+    {id:'saphir',      name:'Saphir',      desc:'Petite ivory pearls + sapphire accents',         img:'assets/style-saphir.jpg',       dots:['#f4efe6','#23307a']},
+    {id:'bleu',        name:'Bleu',        desc:'Aqua, teal + sapphire pearls',                   img:'assets/style-bleu.jpg',         dots:['#7cc3d9','#16707a','#23307a']},
+    {id:'ombre',       name:'Ombré',       desc:'Spring green to sapphire blue',                  img:'assets/style-ombre.jpg',        dots:['#c9e27a','#2f8f7f','#1f3f8f']},
+    {id:'paon',        name:'Paon',        desc:'Ivory pearls, crystal + peacock teal',           img:'assets/style-paon.jpg',         dots:['#f4efe6','#16707a']},
+    {id:'bijou',       name:'Bijou',       desc:'Blush + ivory pearls with jewel-drop charms',    img:'assets/style-bijou.jpg',        dots:['#f2a7b0','#f4efe6','#6f2a4a']},
+    {id:'custom',      name:'Custom',      desc:'Your own color story — tell us in the notes',    img:'assets/ig-07.jpg',              dots:['#e7b6a4','#c17c63','#211a18']}
   ];
   var BIRTHSTONES = [
     ['January','Garnet','#8b1a2b'],['February','Amethyst','#8a4fb5'],['March','Aquamarine','#7fd3e0'],
